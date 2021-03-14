@@ -21,7 +21,7 @@ class Profile(models.Model):
 	bio = models.CharField(max_length=255, blank=True)
 	friends = models.ManyToManyField("Profile", blank=True)
 
-	genres = models.CharField(max_length=100, blank=True)
+	genres = models.CharField(max_length=1000, blank=True)
 
 	
 
@@ -57,4 +57,5 @@ class FriendRequest(models.Model):
 
 	def __str__(self):
 		return "From {}, to {}".format(self.from_user.username, self.to_user.username)
+
 

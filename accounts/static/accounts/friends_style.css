@@ -67,8 +67,8 @@
 
 .side-card {
   display: inline-grid;
-  width: 110px;
-  height: 150px;
+  width: 130px;
+  height: 180px;
   border-radius: 18px;
   margin-left: 20px;
   margin-top: 20px;
@@ -83,4 +83,5 @@
   border-radius: 50%;
   margin-top: 10px;
 }
+
 

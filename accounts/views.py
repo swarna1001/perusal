@@ -71,14 +71,159 @@ def logout_view(request):
 
 
 
+def homepage_view(request):
+
+	# v1.0 (only 10 people in suggested window (will be scaled later))
+	# location - 3
+	# genres - 3
+	# friend's friend - 2
+	# same read_list - 2
+
+	# user's location
+	user_loc = request.user.profile.city
+
+	suggest_list = Profile.objects.filter(city = user_loc)
+	#not_friends = Profile.objects.get(friends=Profile.objects.exclude(user = request.user)) 
+
+	not_friends = Profile.objects.exclude(friends = request.user.profile)
+
+	print("USER LOCATION", suggest_list)
+	print("NOT FRIENDS", not_friends)
+
+	print(type(suggest_list))
+
+
+
+
+	not_friends_suggest_list = not_friends.exclude(user = request.user)
+
+	print("1", not_friends_suggest_list)
+	print(type(not_friends_suggest_list))
+
+
+
+
+	# -----------------------------------------------------------------------------
+
+	# user's location
+	user_loc = request.user.profile.city
+	# users with same location as that of the requested user
+	user_with_same_location = Profile.objects.filter(city=user_loc)
+	# users list having same location (excluding the requested user)
+	same_location_users = user_with_same_location.exclude(user = request.user)
+
+	#print(same_location_users)
+	#print(type(same_location_users))
+
+
+	# user friends
+	user_friends = request.user.profile.friends.all()
+	#print("1", user_friends)
+
+	# removing friends from the same_location users list
+	for friends in user_friends:
+		for users in same_location_users:
+			if friends.user == users.user:
+				#print(friends.user)
+				location_list = same_location_users.exclude(user = users.user)
+
+	# 1. suggested user based on location --- location_list
+	#print("334232342342432342324", location_list)
+
+	# ---------------------------- Based on GENRES -----------------------------------------
+
+	common_genre_count = 0
+
+	# user genres
+	current_user_genres = request.user.profile.genres
+
+	# user genres list form
+	current_user_genres_list = list(current_user_genres.split("  "))
+
+	# total users (excluding the requested user)
+	total_users = Profile.objects.exclude(user = request.user)
+	#print("TOTAL", total_users)
+	#print("FRIENDS", user_friends)
+
+	for users in total_users:
+		for friend in user_friends:
+			if users.user ==  friend.user:
+				#print(friend.user)
+				exclude_friends_users_list = total_users.exclude(user = users.user) 
+
+	
+
+
+
+
+	#print("567565675", exclude_friends_users_list)
+	#print(type(exclude_friends_users_list))
+
+
+
+
+
+
+
+
+	#print("1111111", total_users)
+
+	while common_genre_count < 4:
+
+		for g in total_users:
+			#print(g)
+			#print(type(g))
+			user_genres = g.genres
+			user_genres_list = list(user_genres.split("  "))
+
+			for p in user_genres_list:
+				for q in current_user_genres_list:
+					if p == q:
+						common_genre_count += 1
+
+
+			#print("----------", g)
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+	context = {
+
+			#'location_list' : location_list,
+			
+
+	}
+
+
+	return render(request, 'accounts/test_homepage.html', context)
+
+
+
+
 # CHANGED ON 11/03
-@login_required
+"""@login_required
 def homepage_view(request):
 
 	# Suggest Users is a MESS
 
 	users = Profile.objects.exclude(user = request.user)
 	sent_friend_requests = FriendRequest.objects.filter(from_user = request.user)
+	print("1", users)
+	print("2", sent_friend_requests)
 	sent_to = []
 	friends = []
 	for user in users:
@@ -87,6 +232,7 @@ def homepage_view(request):
 			if f in friends:
 				friend = friend.exclude(user = f.user)
 		friends += friend
+	print("3", friends)
 	my_friends = request.user.profile.friends.all()
 	for i in my_friends:
 		if i in friends:
@@ -102,12 +248,12 @@ def homepage_view(request):
 		if i in friends:
 			friends.remove(i)		
 	for sent in sent_friend_requests:
-		sent_to.append(sent.to_user)
+		sent_to.append(sent.to_user)"""
 
 
 	# USER'S POST
 
-	"""posts = Post.objects.all().order_by('date_posted')
+""" posts = Post.objects.all().order_by('date_posted')
 	user_friends = request.user.profile.friends.all()
 	print("FRIENDS :", user_friends)
 	display_post = []
@@ -122,7 +268,7 @@ def homepage_view(request):
 
 				display_post += [temp2]"""
 	
-	display_post = []
+""" display_post = []
 	user_friends = request.user.profile.friends.all()
 	for f in user_friends:
 		temp = f.user
@@ -130,7 +276,6 @@ def homepage_view(request):
 
 		print("POSTS BY :", posts)
 		
-
 
 
 	print("111111111111111111111", display_post)
@@ -143,15 +288,15 @@ def homepage_view(request):
 	print(type(posts))
 	print(type(display_post))
 	print(type(friends))
-	print(type(users))
+	print(type(users))"""
 
-	context = {
+"""	context = {
 			'users' : friends,
 			'sent' : sent_to,
-			'posts' : posts
+			#'posts' : posts
 
 	}
-	return render(request, 'accounts/test_homepage.html', context)
+	return render(request, 'accounts/test_homepage.html', context)"""
 
 
 

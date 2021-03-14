@@ -108,7 +108,6 @@
 
                 <div class="row my-row">   <!-- ROW 1 --> 
 
-
                     <!-- ROW-1 COL 1  TITLE  -->
                     <div class="col-7 my-col top-col my-col-11">  
                         <div class="title top-item"><span>Perusal</span></div>    
@@ -160,7 +159,7 @@
                     <div class="col-12 my-col my-col-31">
                         <hr/>
                         <div class="tabs">
-                            <input type="radio" name="tabs" id="tabone" checked="checked">
+                            <input type="radio" name="tabs" id="tabone" >
                             <label for="tabone" id="tab-heading-1">Top-Reads</label>
                             <div class="tab">
                                 <div class="top-reads">
@@ -179,12 +178,12 @@
                                 </div>
                             </div>
   
-                            <input type="radio" name="tabs" id="tabtwo">
+                            <input type="radio" name="tabs" id="tabtwo" checked="checked">
                             <label for="tabtwo" id="tab-heading-2">Suggested</label>
                             <div class="tab">
                                 <div class="suggested">                                    
-                                    {% if users %} 
-                                        {% for user_p in users %}
+                                    {% if location_list %} 
+                                        {% for user_p in location_list %}
                                             <div class="card side-card">
                                                 <a href="{{ user_p.get_absolute_url }}"><img
                                                 src="{{ user_p.image.url }}" class="rounded mr-2" width="80" height="80" alt=""/></a>

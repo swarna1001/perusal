@@ -136,7 +136,7 @@
             <!-- RECENT CHANGES -->
 
             <div class="row justify-content-center my-row row-4">
-                <div class="col-12 my-col my-col-41 text-right">
+                <div class="col-12 my-col my-col-41 text-left">
                         
                     <div class="tabs">
 
@@ -151,7 +151,7 @@
                                             <a href="{{ user_p.get_absolute_url }}"> <img src="{{ user_p.image.url }}" class="friend-image" width="80" height="80" alt=""/></a>
                                             <a class="text-dark" href="{{ user_p.get_absolute_url }}">
                                             <b>{{ user_p }}</b></a>
-                                            <small> <a class="btn btn-danger" href="friend/delete/{{ user_p.id }}"> UnFriend </a>
+                                            <small> <a class="btn btn-danger" href="friend/delete/{{ user_p.id }}"> Delete </a>
                                             </small>
                                             </div>
                                         {% endfor %}
