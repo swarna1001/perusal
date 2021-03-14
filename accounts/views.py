@@ -17,6 +17,8 @@ from django.conf import settings
 from django.http import HttpResponseRedirect
 import random
 
+from django.db.models import Q
+
 User = get_user_model()
 
 # Generic view
@@ -82,23 +84,61 @@ def homepage_view(request):
 	# user's location
 	user_loc = request.user.profile.city
 
-	suggest_list = Profile.objects.filter(city = user_loc)
-	#not_friends = Profile.objects.get(friends=Profile.objects.exclude(user = request.user)) 
+	#new_list = Profile.objects.filter(city = user_loc).exclude(friends = request.user.profile)
+	#print("NEW ::::", new_list)
+
+	# WORKING QUERY - 1, queries same location users which are not friends
+	new_list_2 = Profile.objects.filter(city = user_loc).exclude(friends = request.user.profile).exclude(user=request.user)
+	print("NEW AGAIN::::", new_list_2)
+
+	
 
 	not_friends = Profile.objects.exclude(friends = request.user.profile)
-
-	print("USER LOCATION", suggest_list)
-	print("NOT FRIENDS", not_friends)
-
-	print(type(suggest_list))
-
-
-
-
 	not_friends_suggest_list = not_friends.exclude(user = request.user)
 
-	print("1", not_friends_suggest_list)
-	print(type(not_friends_suggest_list))
+	# WORKING QUERY - 2, NOT friends NOT same location
+	not_friend_neither_location = not_friends_suggest_list.exclude(city=user_loc)
+	print(not_friend_neither_location)
+
+
+
+
+	#----------------PERFECTLY WORKING -------------------
+
+	context = {
+			'new_list_2' : new_list_2,
+			'not_friend_neither_location' : not_friend_neither_location,
+
+	}
+
+	return render(request, 'accounts/test_homepage.html', context)
+
+
+
+
+	#suggest_list = Profile.objects.filter(city = user_loc)
+	#not_friends = Profile.objects.get(friends=Profile.objects.exclude(user = request.user)) 
+
+
+	#print("NOT FRIENDS", not_friends)
+
+	#user_friends = request.user.profile.friends.all()
+
+	# working query --- provides same location users
+"""	location_suggest_list = suggest_list.exclude(user = request.user)
+	print("USER LOCATION", location_suggest_list)
+
+	for p in user_friends:
+		if p in location_suggest_list:
+			print(p)
+			print(type(p))
+			location_suggest_list.exclude(user = p.user)
+
+			print(location_suggest_list)"""
+
+
+	
+	#print("1", not_friends_suggest_list)
 
 
 
@@ -106,50 +146,49 @@ def homepage_view(request):
 	# -----------------------------------------------------------------------------
 
 	# user's location
-	user_loc = request.user.profile.city
+	#user_loc = request.user.profile.city
 	# users with same location as that of the requested user
-	user_with_same_location = Profile.objects.filter(city=user_loc)
+	#user_with_same_location = Profile.objects.filter(city=user_loc)
 	# users list having same location (excluding the requested user)
-	same_location_users = user_with_same_location.exclude(user = request.user)
+	#same_location_users = user_with_same_location.exclude(user = request.user)
 
 	#print(same_location_users)
 	#print(type(same_location_users))
 
 
 	# user friends
-	user_friends = request.user.profile.friends.all()
 	#print("1", user_friends)
 
 	# removing friends from the same_location users list
-	for friends in user_friends:
+"""	for friends in user_friends:
 		for users in same_location_users:
 			if friends.user == users.user:
 				#print(friends.user)
 				location_list = same_location_users.exclude(user = users.user)
 
 	# 1. suggested user based on location --- location_list
-	#print("334232342342432342324", location_list)
+	#print("334232342342432342324", location_list)"""
 
 	# ---------------------------- Based on GENRES -----------------------------------------
 
-	common_genre_count = 0
+	#common_genre_count = 0
 
 	# user genres
-	current_user_genres = request.user.profile.genres
+	#current_user_genres = request.user.profile.genres
 
 	# user genres list form
-	current_user_genres_list = list(current_user_genres.split("  "))
+	#current_user_genres_list = list(current_user_genres.split("  "))
 
 	# total users (excluding the requested user)
-	total_users = Profile.objects.exclude(user = request.user)
+	#total_users = Profile.objects.exclude(user = request.user)
 	#print("TOTAL", total_users)
 	#print("FRIENDS", user_friends)
 
-	for users in total_users:
+"""	for users in total_users:
 		for friend in user_friends:
 			if users.user ==  friend.user:
 				#print(friend.user)
-				exclude_friends_users_list = total_users.exclude(user = users.user) 
+				exclude_friends_users_list = total_users.exclude(user = users.user) """
 
 	
 
@@ -168,18 +207,18 @@ def homepage_view(request):
 
 	#print("1111111", total_users)
 
-	while common_genre_count < 4:
+	#while common_genre_count < 4:
 
-		for g in total_users:
+		#for g in total_users:
 			#print(g)
 			#print(type(g))
-			user_genres = g.genres
-			user_genres_list = list(user_genres.split("  "))
+			#user_genres = g.genres
+			#user_genres_list = list(user_genres.split("  "))
 
-			for p in user_genres_list:
-				for q in current_user_genres_list:
-					if p == q:
-						common_genre_count += 1
+			#for p in user_genres_list:
+				#for q in current_user_genres_list:
+					#if p == q:
+						#common_genre_count += 1
 
 
 			#print("----------", g)
@@ -201,15 +240,7 @@ def homepage_view(request):
 
 
 
-	context = {
-
-			#'location_list' : location_list,
-			
-
-	}
-
-
-	return render(request, 'accounts/test_homepage.html', context)
+	
 
 
 

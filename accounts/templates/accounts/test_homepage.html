@@ -182,8 +182,19 @@
                             <label for="tabtwo" id="tab-heading-2">Suggested</label>
                             <div class="tab">
                                 <div class="suggested">                                    
-                                    {% if location_list %} 
-                                        {% for user_p in location_list %}
+                                    {% if new_list_2 %} 
+                                        {% for user_p in new_list_2 %}
+                                            <div class="card side-card">
+                                                <a href="{{ user_p.get_absolute_url }}"><img
+                                                src="{{ user_p.image.url }}" class="rounded mr-2" width="80" height="80" alt=""/></a>
+                                                <a class="text-dark" href="{{ user_p.get_absolute_url }}"><b> {{ user_p }} </b></a>
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %} 
+
+
+                                    {% if not_friend_neither_location %} 
+                                        {% for user_p in not_friend_neither_location %}
                                             <div class="card side-card">
                                                 <a href="{{ user_p.get_absolute_url }}"><img
                                                 src="{{ user_p.image.url }}" class="rounded mr-2" width="80" height="80" alt=""/></a>
