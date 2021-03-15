@@ -76,7 +76,13 @@ def logout_view(request):
 def homepage_view(request):
 
 	# v1.0 (only 10 people in suggested window (will be scaled later))
-	# location - 3
+
+
+	# REMOVE SUPERUSER----------------------->
+
+	# location - 3 (5 for now)
+	# random users (for now) - 10
+	#-------------------------------------
 	# genres - 3
 	# friend's friend - 2
 	# same read_list - 2
@@ -89,25 +95,57 @@ def homepage_view(request):
 
 	# WORKING QUERY - 1, queries same location users which are not friends
 	new_list_2 = Profile.objects.filter(city = user_loc).exclude(friends = request.user.profile).exclude(user=request.user)
-	print("NEW AGAIN::::", new_list_2)
+	#print("NEW AGAIN::::", new_list_2)
 
-	
+	# randomized and limited to 5 (sent to template)
+	location_suggest = random.sample(list(new_list_2), min(len(list(new_list_2)), 5))
+
+
 
 	not_friends = Profile.objects.exclude(friends = request.user.profile)
 	not_friends_suggest_list = not_friends.exclude(user = request.user)
 
 	# WORKING QUERY - 2, NOT friends NOT same location
 	not_friend_neither_location = not_friends_suggest_list.exclude(city=user_loc)
-	print(not_friend_neither_location)
+	#print(not_friend_neither_location)
+
+	# randomized and limited to 10 (sent to template)
+	not_friend_neither_location_list = random.sample(list(not_friend_neither_location), 
+		min(len(list(not_friend_neither_location)), 10))
+
+
 
 
 
 
 	#----------------PERFECTLY WORKING -------------------
 
+	# user genres
+	current_user_genres = request.user.profile.genres
+
+	# user genres list form
+	current_user_genres_list = list(current_user_genres.split("  "))
+	# sorted genres list
+	sorted_genre_list = sorted(current_user_genres_list)
+
+	"""length_sorted_genre = len(sorted_genre_list)
+
+
+	if length_sorted_genre >= 2:
+		gen_list = Profile.objects.filter(Q(genres = sorted_genre_list[0]) | Q(genres = sorted_genre_list[1]))
+
+		gen_list2 = Profile.objects.filter(genres = current_user_genres)
+		print(gen_list)"""
+
+
+
+
+
+
+
 	context = {
-			'new_list_2' : new_list_2,
-			'not_friend_neither_location' : not_friend_neither_location,
+			'location_suggest' : location_suggest,
+			'not_friend_neither_location_list' : not_friend_neither_location_list,
 
 	}
 
@@ -116,135 +154,7 @@ def homepage_view(request):
 
 
 
-	#suggest_list = Profile.objects.filter(city = user_loc)
-	#not_friends = Profile.objects.get(friends=Profile.objects.exclude(user = request.user)) 
-
-
-	#print("NOT FRIENDS", not_friends)
-
-	#user_friends = request.user.profile.friends.all()
-
-	# working query --- provides same location users
-"""	location_suggest_list = suggest_list.exclude(user = request.user)
-	print("USER LOCATION", location_suggest_list)
-
-	for p in user_friends:
-		if p in location_suggest_list:
-			print(p)
-			print(type(p))
-			location_suggest_list.exclude(user = p.user)
-
-			print(location_suggest_list)"""
-
-
 	
-	#print("1", not_friends_suggest_list)
-
-
-
-
-	# -----------------------------------------------------------------------------
-
-	# user's location
-	#user_loc = request.user.profile.city
-	# users with same location as that of the requested user
-	#user_with_same_location = Profile.objects.filter(city=user_loc)
-	# users list having same location (excluding the requested user)
-	#same_location_users = user_with_same_location.exclude(user = request.user)
-
-	#print(same_location_users)
-	#print(type(same_location_users))
-
-
-	# user friends
-	#print("1", user_friends)
-
-	# removing friends from the same_location users list
-"""	for friends in user_friends:
-		for users in same_location_users:
-			if friends.user == users.user:
-				#print(friends.user)
-				location_list = same_location_users.exclude(user = users.user)
-
-	# 1. suggested user based on location --- location_list
-	#print("334232342342432342324", location_list)"""
-
-	# ---------------------------- Based on GENRES -----------------------------------------
-
-	#common_genre_count = 0
-
-	# user genres
-	#current_user_genres = request.user.profile.genres
-
-	# user genres list form
-	#current_user_genres_list = list(current_user_genres.split("  "))
-
-	# total users (excluding the requested user)
-	#total_users = Profile.objects.exclude(user = request.user)
-	#print("TOTAL", total_users)
-	#print("FRIENDS", user_friends)
-
-"""	for users in total_users:
-		for friend in user_friends:
-			if users.user ==  friend.user:
-				#print(friend.user)
-				exclude_friends_users_list = total_users.exclude(user = users.user) """
-
-	
-
-
-
-
-	#print("567565675", exclude_friends_users_list)
-	#print(type(exclude_friends_users_list))
-
-
-
-
-
-
-
-
-	#print("1111111", total_users)
-
-	#while common_genre_count < 4:
-
-		#for g in total_users:
-			#print(g)
-			#print(type(g))
-			#user_genres = g.genres
-			#user_genres_list = list(user_genres.split("  "))
-
-			#for p in user_genres_list:
-				#for q in current_user_genres_list:
-					#if p == q:
-						#common_genre_count += 1
-
-
-			#print("----------", g)
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-	
-
-
-
-
 # CHANGED ON 11/03
 """@login_required
 def homepage_view(request):
@@ -392,25 +302,6 @@ def homepage_view(request):
 	return render(request, 'accounts/test_homepage.html', context)"""
 
 
-# new genre view
-"""@login_required
-def genres_view(request):
-	context = {}
-	form = GenresChoiceForm()
-	context['form'] = form
-
-	if request.GET:
-		temp1 = request.GET['has_autobiography']
-		temp2 = request.GET['has_biography']
-		temp3 = request.GET['has_drama']
-		temp4 = request.GET['has_fairytale']
-
-		print(temp1)
-		print(temp2)
-		print(temp3)
-		print(temp4)
-
-	return render(request, 'accounts/genres.html', context) """
 
 
 """@login_required
