@@ -120,7 +120,8 @@ def homepage_view(request):
 
 	#----------------PERFECTLY WORKING -------------------
 
-	posts = Post.objects.all().order_by('date_posted').exclude(user_name = request.user)
+	posts = Post.objects.all().order_by('-date_posted').exclude(user_name = request.user)
+
 
 
 
@@ -151,6 +152,7 @@ def homepage_view(request):
 	context = {
 			'location_suggest' : location_suggest,
 			'not_friend_neither_location_list' : not_friend_neither_location_list,
+			'posts' : posts
 
 	}
 

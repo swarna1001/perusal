@@ -217,35 +217,65 @@
                         <hr/>
                         <h4>POSTS</h4> 
 
+                        {% for post in posts %}
+                            {% if post.post_image %}
+                                <div class="content-card image-card my-5">
+                                <div class="card-body">
+                                    <a href="{{ post.user_name.profile.get_absolute_url }}"><img
+                                    src="{{ post.user_name.profile.image.url }}"
+                                    class="rounded-circle"
+                                            width="50" height="50" alt=""/></a>
+                                    <a class="text-dark" href="{{ post.user_name.profile.get_absolute_url }}"
+                                    ><b>{{ post.user_name }}</b></a>
+                                    <br /><small class="text-muted"
+                                    >Posted on {{ post.date_posted }}</small>
+                                    <br /><br />
+                                    <p class="card-text text-dark">{{ post.text_post }}</p>
 
-                        
+                                    <br />
+                                    <img class="card-img-top" src="{{ post.post_image.url }}" width="300" height="250" />
+                                    <img src="{{ post.url }}" alt="">
 
-                        
+                                    </div>
+                                        {% if post.tags %}
+                                            <br />
+                                            <p class="text-danger ml-3">
+                                            <b>Tags: <i>{{ post.tags }}</i></b>
+                                            </p>
+                                        {% endif %}
 
-                        
+                                </div>
+                            {% else %}
 
+                                <div class="content-card text-card my-5">
+                                <div class="card-body">
+                                    <a href="{{ post.user_name.profile.get_absolute_url }}"><img
+                                    src="{{ post.user_name.profile.image.url }}"
+                                    class="rounded-circle"
+                                            width="50" height="50" alt=""/></a>
+                                    <a class="text-dark" href="{{ post.user_name.profile.get_absolute_url }}"
+                                    ><b>{{ post.user_name }}</b></a>
+                                    <br /><small class="text-muted"
+                                    >Posted on {{ post.date_posted }}</small>
+                                    <br /><br />
+                                    <p class="card-text text-dark">{{ post.text_post }}</p>
 
+                                    </div>
+                                        {% if post.tags %}
+                                            <br />
+                                            <p class="text-danger ml-3">
+                                            <b>Tags: <i>{{ post.tags }}</i></b>
+                                            </p>
+                                        {% endif %}
+                                
+                                </div>
 
+                            {% endif %}
 
+                        {% endfor %}
 
                     </div>  
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -260,11 +260,6 @@ hr.solid{
 
 
 
-
-
-
-
-
 .logout-link{
   margin-top: 10px;
 }
@@ -374,6 +369,34 @@ hr {
  border:0;
  border-top:1px solid rgba(0,0,0,.1)
 }
+
+
+.content-card{
+  background: #fff;
+  padding: 15px;
+  margin-bottom: 10px;
+  font-size: 14px;
+
+}
+
+.image-card{
+  width: 500px;
+  height: 450px;
+  background: white;
+  box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.1);
+  font-family: "fantasy", sans-serif;
+}
+
+
+.text-card{
+  display: inline-grid;
+  width: 500px;
+  height: 250px;
+  background: white;
+  box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.1);
+  font-family: "fantasy", sans-serif;
+}
+
 
 
 
