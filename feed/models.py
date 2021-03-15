@@ -6,7 +6,7 @@ from PIL import Image
 
 
 class Post(models.Model):
-	text_post = models.TextField()
+	text_post = models.CharField(max_length=500)
 	post_image = models.ImageField(blank=True, upload_to = 'post_images')
 
 	date_posted = models.DateTimeField(default=timezone.now)

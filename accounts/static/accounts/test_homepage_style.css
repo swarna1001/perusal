@@ -374,14 +374,14 @@ hr {
 .content-card{
   background: #fff;
   padding: 15px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   font-size: 14px;
 
 }
 
 .image-card{
-  width: 500px;
-  height: 450px;
+  width: 900px;
+  height: 1000px;
   background: white;
   box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.1);
   font-family: "fantasy", sans-serif;
@@ -390,11 +390,16 @@ hr {
 
 .text-card{
   display: inline-grid;
-  width: 500px;
-  height: 250px;
+  width: 900px;
+  height: 300px;
   background: white;
   box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.1);
   font-family: "fantasy", sans-serif;
+  font-size: 15px;
+}
+
+.post-username{
+  font-size: 25px;
 }
 
 
