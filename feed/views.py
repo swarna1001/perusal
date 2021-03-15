@@ -15,46 +15,19 @@ import json
 from accounts.models import Profile, FriendRequest
 
 
-# 11/03
 class PostListView(ListView):
 	model = Post
 	template_name = 'feed/home.html'
 	context_object_name = 'posts'
 	ordering = ['-date_posted']
 	paginate_by = 10
-
-
 	def get_context_data(self, **kwargs):
 		context = super(PostListView, self).get_context_data(**kwargs)
 		if self.request.user.is_authenticated:
 			liked = [i for i in Post.objects.all() 
 			if Like.objects.filter(user = self.request.user, post=i)]
 			context['liked_post'] = liked
-
-
 		return context
-
-
-
-
-
-
-
-"""class PostListView(ListView):
-	model = Post
-	template_name = 'feed/home.html'
-	context_object_name = 'posts'
-	ordering = ['-date_posted']
-	paginate_by = 10
-
-	def get_context_data(self, **kwargs):
-		context = super(PostListView, self).get_context_data(**kwargs)
-		if self.request.user.is_authenticated:
-			liked = [i for i in Post.objects.all() 
-			if Like.objects.filter(user = self.request.user, post=i)]
-			context['liked_post'] = liked
-
-		return context"""
 
 
 class UserPostListView(LoginRequiredMixin, ListView):
@@ -174,40 +147,3 @@ def like(request):
 	}
 	response = json.dumps(resp)
 	return HttpResponse(response, content_type = "application/json")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

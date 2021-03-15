@@ -120,6 +120,11 @@ def homepage_view(request):
 
 	#----------------PERFECTLY WORKING -------------------
 
+	posts = Post.objects.all().order_by('date_posted').exclude(user_name = request.user)
+
+
+
+
 	# user genres
 	current_user_genres = request.user.profile.genres
 

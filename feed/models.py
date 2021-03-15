@@ -22,22 +22,6 @@ class Post(models.Model):
 		return reverse('post-detail', kwargs={'pk': self.pk})
 
 
-	# for image resize and save the updated profile in the database
-
-	def save(self, *args, **kwargs):
-		super().save(*args, **kwargs)
-
-		img = Image.open(self.post_image.path)
-
-		if img.height > 600 or img.width > 600:
-			output_size = (600, 600)
-			img.thumbnail(output_size)
-			img.save(self.post_image.path)
-
-
-
-
-
 
 
 class Comment(models.Model):
@@ -50,9 +34,3 @@ class Comment(models.Model):
 class Like(models.Model):
 	user = models.ForeignKey(User, related_name='likes', on_delete=models.CASCADE)
 	post = models.ForeignKey(Post, related_name='likes', on_delete=models.CASCADE)
-
-
-
-	
-	
-
