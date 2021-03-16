@@ -159,6 +159,7 @@ hr.solid{
         cursor:pointer;
 }
 
+
 /* ===========================
    ====== Medua Query for Search Box ====== 
    =========================== */
@@ -373,15 +374,15 @@ hr {
 
 .content-card{
   background: #fff;
-  padding: 15px;
-  margin-bottom: 5px;
+  margin-left: 20px;
+  margin-bottom: 20px;
   font-size: 14px;
 
 }
 
 .image-card{
   width: 900px;
-  height: 1000px;
+  height: 1200px;
   background: white;
   box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.1);
   font-family: "fantasy", sans-serif;

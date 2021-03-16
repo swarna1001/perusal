@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'accounts',
     'feed',
     'crispy_forms',
+    'foundation_filefield_widget',
 ]
 
 MIDDLEWARE = [

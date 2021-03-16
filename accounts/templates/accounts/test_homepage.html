@@ -40,7 +40,6 @@
 <body>
 
 
-
   <div class="container-fluid my-container">
         
     <div class="row my-row">        <!-- ROW 1  TITLE  -->
@@ -219,7 +218,7 @@
 
                         {% for post in posts %}
                             {% if post.post_image %}
-                                <div class="content-card image-card my-5">
+                                <div class="content-card image-card my-3">
                                 <div class="card-body">
                                     <a href="{{ post.user_name.profile.get_absolute_url }}"><img
                                     src="{{ post.user_name.profile.image.url }}"
@@ -233,7 +232,7 @@
                                     <p class="card-text text-dark">{{ post.text_post }}</p>
 
                                     <br />
-                                    <img class="card-img-top" src="{{ post.post_image.url }}" width="550" height="700" />
+                                    <img class="card-img-top" src="{{ post.post_image.url }}" width="550" height="900" />
                                     <img src="{{ post.url }}" alt="">
 
                             <!--        {% if post.tags %}
@@ -247,7 +246,7 @@
                                 </div>
                             {% else %}
 
-                                <div class="content-card text-card my-5">
+                                <div class="content-card text-card my-3">
                                 <div class="card-body">
                                     <a href="{{ post.user_name.profile.get_absolute_url }}"><img
                                     src="{{ post.user_name.profile.image.url }}"

@@ -19,8 +19,13 @@ body{
 }
 
 .title span{
-  color: #4CCEE8;
+  color: #014421;
   font-size: 40px;
+  font-family: "Lucida Handwriting", "Georgia";
+}
+
+.top-item{
+  margin-top: 25px;
 }
 
 .wrapper .sidebar{

@@ -1,10 +1,13 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    {% load static %}
+    
 
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
 
     <title> {{ user.username }}</title>
     
@@ -14,8 +17,14 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8">      
     </script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script> 
+
 
     <link rel="stylesheet" type="text/css" href="{% static 'accounts/base_style.css' %}"/>
+
+    {% block cssfiles %}
+
+    {% endblock cssfiles %}
 
     <style>
         .my-container{
@@ -84,7 +93,7 @@
                             </li>
 
                             <li class="item">
-                                <a href="#posts" class="menu-btn">
+                                <a href="{% url 'feed:user-posts' user.username %}" class="menu-btn">
                                 <i class="fas fa-newspaper"></i><span>Posts</span></a>
                             </li>
 
@@ -108,9 +117,17 @@
                         <div class="title"><span>Perusal</span></div>    
                     </div>
 
-                        <!-- ROW-1 COL 1  LOG - OUT  -->
-                        <div class="col-5 my-col top-col my-col-12 text-right"> 
-                            <form class="logout-link" action="/accounts/logout/" method="post">
+                        <!-- ROW-1 COL 2  ADD POST  -->
+                        <div class="col-3 my-col top-col my-col-12 text-right"> 
+                            <form class="top-item" action="{% url 'feed:post-create' %}" method="post">
+                                {% csrf_token %}
+                                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Create Post</button>
+                            </form>
+                        </div>
+
+                        <!-- ROW-1 COL 3  LOG - OUT  -->
+                        <div class="col-2 my-col top-col my-col-12 text-center"> 
+                            <form class="top-item" action="/accounts/logout/" method="post">
                                 {% csrf_token %}
                                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit"> Logout</button>
                             </form>
@@ -136,6 +153,11 @@
 
                                     <!-- EXTRA CONTENT
                                             HERE---->
+
+                {% block content %}
+
+
+                {% endblock content %}
 
 
 

@@ -1,34 +1,36 @@
-<!DOCTYPE html>
-<html>
-<head>
+{% extends "accounts/base.html" %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+{% block cssfiles %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'accounts/base_style.css' %}"/>
+
+    <!-- EXTRA CSS FILES HERE -->
+
+{% endblock cssfiles %}
+
+
+    
+    <!-- ############## till here COMMON TEMPLATE FOR ALL THE PAGES  ################# -->
+
+
+
+                                    <!-- EXTRA CONTENT
+                                            HERE---->
+{% block content %}
+
     
 
 	{% load static %}
 	
     {% load crispy_forms_tags %}
 
-	<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"> 
 
-	<title>homepage</title>
+<!-- display django messages (WORKS) -->
 
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
-	   
-	<!--<link rel="stylesheet" type="text/css" href="{% static 'accounts/homepage_style.css' %}"/> -->
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
-    <link rel="stylesheet" type="text/css" href="{% static 'accounts/homepage_style.css' %}"/> 
-
-</head>
-<body>
-
-<!-- display django messages -->
-
-<main role="main" class="container">
-    <div class="row">
+    <!--<div class="row">
         <div class="col-md-8">
             {% if messages %}
                 {% for message in messages %}
@@ -40,7 +42,7 @@
                 {% endfor %}
             {% endif %}       
         </div>
-    </div>
+    </div> -->
 
     <div class="content-section">
         <div class="media">
@@ -78,6 +80,6 @@
 
 
 
-</body>
-</html>
+{% endblock content %}
+
 
