@@ -22,8 +22,6 @@ class Post(models.Model):
 		return reverse('post-detail', kwargs={'pk': self.pk})
 
 
-
-
 class Comment(models.Model):
 	post = models.ForeignKey(Post, related_name='details', on_delete=models.CASCADE)
 	username = models.ForeignKey(User, related_name='details', on_delete=models.CASCADE)
