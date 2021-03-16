@@ -134,9 +134,10 @@
 
                     <!-- ROW-1 COL 2  ADD POST  -->
                         <div class="col-3 my-col top-col my-col-12 text-right"> 
+
                             <form class="top-item" action="{% url 'feed:post-create' %}" method="post">
                                 {% csrf_token %}
-                                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Create Post</button>
+                                <button class="btn btn-colour-1 my-2 my-sm-0" type="submit">Add Post</button>
                             </form>
                         </div>
 
@@ -144,10 +145,9 @@
                         <div class="col-2 my-col top-col my-col-12 text-center"> 
                             <form class="top-item" action="/accounts/logout/" method="post">
                                 {% csrf_token %}
-                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"> Logout</button>
+                                <button class="btn btn-colour-1 my-2 my-sm-0" type="submit"> Logout
                             </form>
                         </div> 
-
                 </div>
                
 

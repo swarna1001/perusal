@@ -87,14 +87,15 @@
                                             width="80" height="80" alt=""/></a>
                                     <a class="text-dark post-username" href="{{ post.user_name.profile.get_absolute_url }}"
                                     ><b>{{ post.user_name }}</b></a>
-                                    <br /><small class="text-muted"
-                                    >{{ post.date_posted }}</small>
+                                    
                                     <br /><br />
                                     <p class="card-text text-dark">{{ post.text_post }}</p>
 
                                     <br />
                                     <img class="card-img-top" src="{{ post.post_image.url }}" width="550" height="900" />
                                     <img src="{{ post.url }}" alt="">
+                                    <br /><small class="text-muted"
+                                    >{{ post.date_posted }}</small>
 
                             <!--        {% if post.tags %}
                                             <br />
@@ -115,10 +116,11 @@
                                             width="80" height="80" alt=""/></a>
                                     <a class="text-dark post-username" href="{{ post.user_name.profile.get_absolute_url }}"
                                     ><b>{{ post.user_name }}</b></a>
-                                    <br /><small class="text-muted"
-                                    >Posted on {{ post.date_posted }}</small>
+                                    
                                     <br /><br />
                                     <p class="card-text text-dark">{{ post.text_post }}</p>
+                                    <br /><small class="text-muted"
+                                    >{{ post.date_posted }}</small>
 
                                     </div>
                                         <!--        {% if post.tags %}
