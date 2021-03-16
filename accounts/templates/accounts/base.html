@@ -17,7 +17,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8">      
     </script>
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script> 
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 
 
     <link rel="stylesheet" type="text/css" href="{% static 'accounts/base_style.css' %}"/>
@@ -43,12 +44,18 @@
 
         </style>
 
+
+    {% block javascript_block %}
+
+
+    {% endblock javascript_block %}
+
 </head>
 <body>
 
 
 
-  <div class="container-fluid my-container">
+ <div class="container-fluid my-container">
         
     <div class="row my-row">        <!-- ROW 1  TITLE  -->
         <div class="col-md-2 my-col top-col my-col-11">
@@ -66,9 +73,10 @@
 
                             <li class="item">
                                 <a href="{% url 'accounts:edit_profile' %}"  class="edit-menu-btn">
-                                <i class="fas fa fa-user"></i><span>Edit Profile</span></a>
+                                <i class="fas fa fa-user"></i><span> Edit Profile</span></a>
                             </li>
                             <center> <hr class="solid"> </center>
+
 
                             <li class="item">
                                 <a href="{% url 'accounts:homepage' %}" class="menu-btn">
@@ -88,7 +96,7 @@
 
                             <li class="item">
                                 <a href="{% url 'accounts:friend_list' %}" class="menu-btn">
-                                <i class="fas fa fa-users"></i><span>Friends</span>
+                                <i class="fas fa fa-users"></i><span> Friends</span>
                         </a>
                             </li>
 
@@ -99,7 +107,7 @@
 
                             <div>
                                 <li class="item" id="settings">
-                                    <a href="#settings" class="last-menu-btn">
+                                    <a href="{% url 'feed:post-home' %}" class="last-menu-btn">
                                     <i class="fas fa-cog"></i><span>Settings</span> </a>
                                 </li>
                             </div>
@@ -107,17 +115,20 @@
                 </div> <!-- sidebar end -->
 
             </div>  <!-- wrapper end -->
-            </div>    <!-- sidebar column end -->
+            </div>
+
 
             <div class="col-md-10 my-col top-col my-col-12 "> <!-- COL 2 -->
 
                 <div class="row my-row">   <!-- ROW 1 --> 
 
-                    <div class="col-7 my-col top-col my-col-11">  <!-- ROW-1 COL 1  TITLE  -->
-                        <div class="title"><span>Perusal</span></div>    
+                    <!-- ROW-1 COL 1  TITLE  -->
+                    <div class="col-7 my-col top-col my-col-11">  
+                        <div class="title top-item"><span>Perusal</span></div>    
                     </div>
 
-                        <!-- ROW-1 COL 2  ADD POST  -->
+
+                    <!-- ROW-1 COL 2  ADD POST  -->
                         <div class="col-3 my-col top-col my-col-12 text-right"> 
                             <form class="top-item" action="{% url 'feed:post-create' %}" method="post">
                                 {% csrf_token %}
@@ -132,7 +143,9 @@
                                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit"> Logout</button>
                             </form>
                         </div> 
+
                 </div>
+               
 
                 <!-- ROW 2   SEARCH BAR  -->
                 <div class="row justify-content-center my-row row-2">    
@@ -146,6 +159,10 @@
                         </div>     
                     </div>  
                 </div>
+                <hr />
+
+    <!-- ############## till here COMMON TEMPLATE FOR ALL THE PAGES  ################# -->
+
 
     <!-- ############## till here COMMON TEMPLATE FOR ALL THE PAGES  ################# -->
 

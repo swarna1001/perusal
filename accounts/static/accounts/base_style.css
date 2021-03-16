@@ -159,6 +159,7 @@ hr.solid{
         cursor:pointer;
 }
 
+
 /* ===========================
    ====== Medua Query for Search Box ====== 
    =========================== */
@@ -173,10 +174,26 @@ hr.solid{
   }
 
 }
+ /* COMMON CSS FOR ALL THE PAGES */
 
-.logout-link{
-  margin-top: 10px;
+ /* NEWLY ADDED --from my_profile_style */
+
+
+hr {
+ /*! margin-top:1rem; */
+ margin-bottom:1rem;
+ border:0;
+ border-top:1px solid rgba(0,0,0,.1)
 }
 
 
- /* COMMON CSS FOR ALL THE PAGES */
+
+
+
+
+
+
+
+
+
+
