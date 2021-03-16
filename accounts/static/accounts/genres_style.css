@@ -7,7 +7,7 @@
     margin-top: 20px;
 }
 
-.ul{
+.box-data .ul{
   font-size: 20px;
 
 }
@@ -26,7 +26,7 @@ input.largerCheckbox {
     
 }
 
-ul.checkbox li{
+.box-data ul.checkbox li{
     display: inline-grid;
 }
 
@@ -34,7 +34,7 @@ ul.checkbox li{
     margin-top: 20px
 }
 
-hr{
+.box-data hr{
     margin-top: 10px;
     margin-bottom: 10px;
 }
