@@ -38,13 +38,13 @@
            /* max-width: 1280px; */
         }
   
-        /*.my-col{
+        .my-col{
             border: 1px solid blue;
         }
         
          .my-row{
             border: 1px solid red;
-         } */
+         } 
 
         </style>
 
@@ -62,7 +62,7 @@
  <div class="container-fluid my-container">
         
     <div class="row my-row">        <!-- ROW 1  TITLE  -->
-        <div class="col-md-2 my-col top-col my-col-11">
+        <div class="col-md-2 col-sm-4 my-col top-col my-col-11">
 
 
     <div class="wrapper">
@@ -110,8 +110,9 @@
                             </li>
 
                             <div>
+                                <center> <hr class="solid"> </center>
                                 <li class="item" id="settings">
-                                    <a href="{% url 'feed:post-home' %}" class="last-menu-btn">
+                                    <a href="{% url 'feed:post-home' %}" class="menu-btn">
                                     <i class="fas fa-cog"></i><span>Settings</span> </a>
                                 </li>
                             </div>
@@ -124,16 +125,17 @@
 
             <div class="col-md-10 my-col top-col my-col-12 "> <!-- COL 2 -->
 
-                <div class="row my-row">   <!-- ROW 1 --> 
+                <div class="row header-row my-row">   <!-- ROW 1 --> 
 
                     <!-- ROW-1 COL 1  TITLE  -->
-                    <div class="col-7 my-col top-col my-col-11">  
+
+                    <div class="col-md-7 my-col top-col my-col-11 header-row">  
                         <div class="title top-item"><span>Perusal</span></div>    
                     </div>
 
 
                     <!-- ROW-1 COL 2  ADD POST  -->
-                        <div class="col-3 my-col top-col my-col-12 text-right"> 
+                        <div class="col-md-3 my-col top-col my-col-12 text-right header-row"> 
 
                             <form class="top-item" action="{% url 'feed:post-create' %}" method="post">
                                 {% csrf_token %}
@@ -142,7 +144,7 @@
                         </div>
 
                         <!-- ROW-1 COL 3  LOG - OUT  -->
-                        <div class="col-2 my-col top-col my-col-12 text-center"> 
+                        <div class="col-2 my-col top-col my-col-12 text-center "> 
                             <form class="top-item" action="/accounts/logout/" method="post">
                                 {% csrf_token %}
                                 <button class="btn btn-colour-1 my-2 my-sm-0" type="submit"> Logout
@@ -163,6 +165,7 @@
                         </div>     
                     </div>  
                 </div>
+            
                 <hr />
 
     <!-- ############## till here COMMON TEMPLATE FOR ALL THE PAGES  ################# -->

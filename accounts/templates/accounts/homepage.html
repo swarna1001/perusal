@@ -102,20 +102,33 @@
 
             <div class="col-md-10 my-col top-col my-col-12 "> <!-- COL 2 -->
 
+                <div class="top-bar">
+
                 <div class="row my-row">   <!-- ROW 1 --> 
 
                     <div class="col-7 my-col top-col my-col-11">  <!-- ROW-1 COL 1  TITLE  -->
                         <div class="title"><span>Perusal</span></div>    
                     </div>
 
+
+                        <!-- ROW-1 COL 2  ADD POST  -->
+                        <div class="col-3 my-col top-col my-col-12 text-right header-row"> 
+
+                            <form class="top-item" action="{% url 'feed:post-create' %}" method="post">
+                                {% csrf_token %}
+                                <button class="btn btn-colour-1 my-2 my-sm-0" type="submit">Add Post</button>
+                            </form>
+                        </div>
+
                         <!-- ROW-1 COL 1  LOG - OUT  -->
-                        <div class="col-5 my-col top-col my-col-12 text-right"> 
+                        <div class="col-2 my-col top-col my-col-12 text-right"> 
                             <form class="logout-link" action="/accounts/logout/" method="post">
                                 {% csrf_token %}
                                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit"> Logout</button>
                             </form>
                         </div> 
                 </div>
+
 
                 <!-- ROW 2   SEARCH BAR  -->
                 <div class="row justify-content-center my-row row-2">    
@@ -128,6 +141,7 @@
                             </form>
                         </div>     
                     </div>  
+                </div>
                 </div>
 
     <!-- ############## till here COMMON TEMPLATE FOR ALL THE PAGES  ################# -->
@@ -181,8 +195,8 @@
                         <div class="right-sidebar">
                             <div>
 
-                                {% if users %} 
-                                    {% for user_p in users %}
+                                {% if not_friend_neither_location_list %} 
+                                    {% for user_p in not_friend_neither_location_list %}
                                         <div class="card side-card">
                                             <a href="{{ user_p.get_absolute_url }}"><img
                                             src="{{ user_p.image.url }}" class="rounded mr-2" width="80" height="80" alt=""/></a>

@@ -755,3 +755,4 @@ def my_profile(request):
 	user_posts = Post.objects.filter(user_name = you)
 	friends = p.friends.all()
 
+

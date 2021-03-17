@@ -32,7 +32,6 @@ body{
   z-index: 1;
   background: #454140;
   position: fixed;
-  width: 225px; 
   height: 100%;
   overflow-y: auto;
 }
@@ -73,7 +72,7 @@ hr.solid{
   transition-property: color;
 }
 
-.wrapper .sidebar .sidebar-menu .item .last-menu-btn{
+/*.wrapper .sidebar .sidebar-menu .item .last-menu-btn{
   display: block;
   color: #fff;
   position: relative;
@@ -81,7 +80,7 @@ hr.solid{
   transition: 0.3s;
   transition-property: color;
   margin-top: 40px; 
-}
+}*/
 
 .wrapper .sidebar .sidebar-menu .item .edit-menu-btn{
   display: block;
@@ -108,9 +107,9 @@ hr.solid{
   margin-right: 20px;
 }
 
-.wrapper .sidebar .sidebar-menu .item .last-menu-btn i{
+/*.wrapper .sidebar .sidebar-menu .item .last-menu-btn i{
   margin-right: 20px;
-}
+}*/
 
 .wrapper .sidebar .sidebar-menu .item .edit-menu-btn i{
   margin-right: 20px;

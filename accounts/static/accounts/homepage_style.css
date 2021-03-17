@@ -33,6 +33,31 @@ body{
   overflow-y: auto;
 }
 
+
+.top-bar{
+
+  z-index: 1;
+  background: #fff;
+  position: fixed;
+  width: calc(100% - 305px);
+  top: 0;
+
+}
+
+.fixed-searchbar{
+
+  z-index: 1;
+  background: #fff;
+  position: fixed;
+  width: calc(100% - 0%);
+  top: 0;
+
+  margin-bottom: 20px;
+
+}
+
+
+
 hr.solid{
   border-top: 1px solid #bbb;
   width: 200px;
@@ -124,6 +149,7 @@ hr.solid{
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
+  margin-top: 10px;
 }
 
 .search input[type="text"]
@@ -174,11 +200,11 @@ hr.solid{
  /* NEWLY ADDED --from my_profile_style */
 
  .read-label{
-  margin-top: 10px;
+  margin-top: 135px;
  }
 
   .suggest-label{
-  margin-top: 25px;
+  margin-top: 125px;
  }
 
  .card{
@@ -300,7 +326,6 @@ hr.solid{
 .user-bio{
   margin-top: 20px;
 }
-
 
 
 
