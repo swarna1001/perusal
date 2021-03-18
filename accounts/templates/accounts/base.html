@@ -56,8 +56,66 @@
 <body>
 
 <div class="container-fluid my-container">
-        
+
+    <nav class="navbar navbar-custom navbar-expand-md fixed-top ">
+        <!-- Brand -->
+        <a class="navbar-brand title" href="#"><span>Perusal</span></a>
+            <!-- Toggler/collapsibe Button -->
+            <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar links -->
+
+            <div class="collapse navbar-collapse"></div> 
+
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+
+                <ul class="nav justify-content-center">
+  
+                    <!-- EXTRA LINK 
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li> -->
+
+                    <li class="nav-item">
+                        <div class="search">
+                            <form class="search-form">
+                                <input class="search-txt" type="text" name="q" placeholder="search">
+                                <a class="search-btn" href="#">
+                                <i class="fas fa-search"></i></a>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav ml-auto"> 
+
+                    <li class="nav-item">
+                        <form class="top-item" action="{% url 'feed:post-create' %}" method="post">
+                            {% csrf_token %}
+                            <button class="btn btn-colour-1 my-2 my-sm-0" type="submit">Add Post
+                            </button>
+                        </form>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <form action="/accounts/logout/" method="post">
+                            {% csrf_token %}
+                            <button class="btn btn-colour-1 my-2 my-sm-0" type="submit"> Logout
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+
+            </div>
+    </nav>  <!-- NAV BAR END -->
+
+<!--------------------------------------------------------------------------->
+
     <div class="row my-row">        <!-- MAIN ROW  -->
+
         <!-- SIDEBAR COLUMN -->    
         <div class="col-md-2 col-sm-0 my-col top-col my-col-11">
             <div class="wrapper">
@@ -94,7 +152,7 @@
 
                         <li class="item">
                             <a href="{% url 'accounts:friend_list' %}" class="menu-btn">
-                            <i class="fas fa fa-users"></i><span> Friends</sp</a>
+                            <i class="fas fa fa-users"></i><span> Friends</span> </a>
                         </li>
 
                         <li class="item">
@@ -113,123 +171,31 @@
                     </div>
                 </div> <!-- sidebar end -->
             </div>  <!-- wrapper end -->
-        </div>
+        </div>    <!-- SIDEBAR COLUMN END -->
 
 
-        <div class="col-md-10 my-col top-col my-col-12 "> <!-- COL 2 -->
 
-            <div class="row header-row my-row">   <!-- ROW 1 --> 
+        <div class="col-md-10 my-col top-col my-col-12 "> <!-- CONTENT COLUMN -->
 
-                <nav class="navbar navbar-custom navbar-expand-md fixed-top ">
-                    <!-- Brand -->
-                    <a class="navbar-brand title" href="#"><span>Perusal</span></a>
-                        <!-- Toggler/collapsibe Button -->
-                        <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-
-                        <!-- Navbar links -->
-
-                        <div class="collapse navbar-collapse"></div> 
-
-                        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-
-                            <ul class="nav justify-content-center">
-  
-                                <!-- EXTRA LINK 
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Link</a>
-                                </li> -->
-
-                                <li class="nav-item">
-                                    <div class="search">
-                                        <form class="search-form">
-                                            <input class="search-txt" type="text" name="q" placeholder="search">
-                                            <a class="search-btn" href="#">
-                                            <i class="fas fa-search"></i></a>
-                                        </form>
-                                    </div>
-                                </li>
-                            </ul>
-
-                            <ul class="navbar-nav ml-auto"> 
-
-                                <li class="nav-item">
-                                    <form class="top-item" action="{% url 'feed:post-create' %}" method="post">
-                                        {% csrf_token %}
-                                        <button class="btn btn-colour-1 my-2 my-sm-0" type="submit">Add Post</button>
-                                    </form>
-                                </li>
-
-
-                                <li class="nav-item">
-                                    <form action="/accounts/logout/" method="post">
-                                        {% csrf_token %}
-                                        <button class="btn btn-colour-1 my-2 my-sm-0" type="submit"> Logout
-                                    </form>
-                                </li>
-                            </ul>
-
-                        </div>
-                </nav>  <!-- NAV BAR END -->
-            </div>
-
-                    <!-- ROW-1 COL 1  TITLE  -->
-
-                    <!--<div class="col-md-7 my-col top-col my-col-11 header-row">  
-                        <div class="title top-item"><span>Perusal</span></div>    
-                    </div>-->
-
-
-                    <!-- ROW-1 COL 2  ADD POST  -->
-                        <!--<div class="col-md-3 my-col top-col my-col-12 text-right header-row"> 
-
-                            <form class="top-item" action="{% url 'feed:post-create' %}" method="post">
-                                {% csrf_token %}
-                                <button class="btn btn-colour-1 my-2 my-sm-0" type="submit">Add Post</button>
-                            </form>
-                        </div> -->
-
-                        <!-- ROW-1 COL 3  LOG - OUT  -->
-                        <!--<div class="col-2 my-col top-col my-col-12 text-center "> 
-                            <form class="top-item" action="/accounts/logout/" method="post">
-                                {% csrf_token %}
-                                <button class="btn btn-colour-1 my-2 my-sm-0" type="submit"> Logout
-                            </form>
-                        </div> -->
-                
-               
-
-                <!-- ROW 2   SEARCH BAR  -->
-                <!--<div class="row justify-content-center my-row row-2">    
-                    <div class="col-6 my-col my-col-21 text-center">
-                        <div class="search">
-                            <form class="search-form">
-                            <input class="search-txt" type="text" name="q" placeholder="search">
-                                <a class="search-btn" href="#">
-                                <i class="fas fa-search"></i></a>
-                            </form>
-                        </div>     
-                    </div>  
-                </div>
-            
-                <hr />-->
-
-    <!-- ############## till here COMMON TEMPLATE FOR ALL THE PAGES  ################# -->
-
-
+             {% block content %}
 
                                     <!-- EXTRA CONTENT
                                             HERE---->
 
-                {% block content %}
 
+            {% endblock content %}
 
-                {% endblock content %}
+        </div> <!-- CONTENT COLUMN END -->
+        
 
-          </div> <!-- CONTENT COLUMN END -->
-        </div> <!-- ROW END -->
-    </div>  <!-- CONTAINER END -->
+    </div> <!-- ROW END -->
+    
+
+</div>  <!-- CONTAINER END -->
 
 </body>
 </html>
+
+
+
+               
