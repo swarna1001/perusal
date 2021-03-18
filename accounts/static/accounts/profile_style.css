@@ -1,3 +1,10 @@
+.top-row{
+  margin-top: 100px;
+}
+
+.genres-row{
+  margin-top: 20px;
+}
 
 .profile-image{
   margin: 20px 0;
@@ -24,7 +31,7 @@
   margin-top: 20px;
 }
 
-.request-link{
+.profile-btn{
   margin-top: 60px;
 }
 
@@ -41,4 +48,40 @@
   margin-bottom: 10px;
   font-size: 14px;
 } */
+
+
+
+/* POST DISPLAY */
+
+.content-card{
+  background: #fff;
+  margin-left: 20px;
+  font-size: 14px;
+
+}
+
+.image-card{
+  width: 900px;
+  height: 1200px;
+  background: white;
+  box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.1);
+  font-family: "fantasy", sans-serif;
+}
+
+
+.text-card{
+  display: inline-grid;
+  width: 900px;
+  height: 300px;
+  background: white;
+  box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.1);
+  font-family: "fantasy", sans-serif;
+  font-size: 15px;
+}
+
+.post-username{
+  font-size: 25px;
+}
+
+
 

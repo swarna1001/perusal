@@ -584,7 +584,7 @@ def profile_view(request, slug):
 	u = p.user
 	sent_friend_requests = FriendRequest.objects.filter(from_user=p.user)
 	rec_friend_requests = FriendRequest.objects.filter(to_user=p.user)
-	#user_posts = Post.objects.filter(user_name=u)
+	user_posts = Post.objects.filter(user_name=u)
 
 	friends = p.friends.all()
 
@@ -614,7 +614,8 @@ def profile_view(request, slug):
 		'sent_friend_requests': sent_friend_requests,
 		'rec_friend_requests': rec_friend_requests,
 		'existing_genres' : existing_genres,
-		#'post_count': user_posts.count
+		'post_count': user_posts.count,
+		'user_posts' : user_posts
 	}
 
 	return render(request, "accounts/profile.html", context)

@@ -3,17 +3,21 @@
 {% load static %}
 
 {% load crispy_forms_tags %}
+
+{% block title %}
+    <title> {{ u.username }} </title>
+{% endblock title %}
+
+
 {% block cssfiles %}
 
     <link rel="stylesheet" type="text/css" href="{% static 'accounts/profile_style.css' %}"/> 
-
 
 {% endblock cssfiles %}
 
 
     
     <!-- ############## till here COMMON TEMPLATE FOR ALL THE PAGES  ################# -->
-
 
 
                                     <!-- EXTRA CONTENT
@@ -33,7 +37,7 @@
 
                                 <div class="col-4 my-col text-center">
                                     <div class="posts-col">
-                                        <h3>100</h3>
+                                        <h3>{{post_count}}</h3>
                                         <h3>Posts</h3>                   
                                     </div>                   
                                 </div>
@@ -51,7 +55,7 @@
 
                     <div class="col-2 my-col my-col-32 text-center">
                         <div class="friends-col">
-                            <h3>50</h3>
+                            <h3>{{ u.profile.friends.count}}</h3>
                             <h3>Friends</h3>                    
                         </div>
 
@@ -62,16 +66,16 @@
 
                             {% if button_status == 'not_friend' %}
                                 <small>
-                                    <a class="btn btn-primary" href="/accounts/friend-request/send/{{ u.id }}/" > Request </a>
+                                    <a class="btn btn-primary btn-lg btn-block profile-btn " href="/accounts/friend-request/send/{{ u.id }}/" > Request </a>
                                 </small>
 
                             {% elif button_status == 'friend_request_sent' %}
-                                <small> <a class="btn btn-warning" href="/accounts/friend-request/cancel/{{ u.id }}/" > Cancel </a></small>
+                                <small> <a class="btn btn-warning btn-lg btn-block profile-btn" href="/accounts/friend-request/cancel/{{ u.id }}/" > Cancel </a></small>
 
                             {% elif button_status == 'friend_request_received' %}
-                                <small> <a class="btn btn-success mr-2" href="/accounts/friend-request/accept/{{ u.id }}/" > Accept </a></small>
+                                <small> <a class="btn btn-success mr-4 profile-btn" href="/accounts/friend-request/accept/{{ u.id }}/" > Accept </a></small>
                                 
-                                <small> <a class="btn btn-danger" href="/accounts/friend-request/delete/{{ u.id }}/" > Delete </a></small>
+                                <small> <a class="btn btn-danger profile-btn" href="/accounts/friend-request/delete/{{ u.id }}/" > Delete </a></small>
                     
                             {% else %}
                             
@@ -110,7 +114,7 @@
                 <!-- ROW 5 GENRES, READ LIST -->
                 <!-- displayed only if the user has added the corresponding information -->
                 <!-- ADD WHEN READ_LIST IS ADDED -->
-                <div class="row justify-content-center my-row">     
+                <div class="row justify-content-center genres-row my-row">     
                     <div class="col-5 my-col my-col-61">
                         <div class="accordion text-center" id="accordionExample">
                             <div class="card">
@@ -157,12 +161,88 @@
                         </div>
                     </div>  
                 </div>
+                <hr/>
+
+
+                <div class="row justify-content-center my-row posts-row">       <!-- ROW 6  POSTS -->
+                    <div class="col-10 my-col my-col-61">
+                        
+                        <h1 class="text-center">Posts</h1>
+
+                        {% for post in user_posts %}
+                            {% if post.post_image %}
+                                <div class="content-card image-card my-3">
+                                <div class="card-body">
+                                    <a href="{{ post.user_name.profile.get_absolute_url }}"><img
+                                    src="{{ post.user_name.profile.image.url }}"
+                                    class="rounded-circle"
+                                            width="80" height="80" alt=""/></a>
+                                    <a class="text-dark post-username" href="{{ post.user_name.profile.get_absolute_url }}"
+                                    ><b>{{ post.user_name }}</b></a>
+                                    
+                                    <br /><br />
+                                    <p class="card-text text-dark">{{ post.text_post }}</p>
+
+                                    <br />
+                                    <img class="card-img-top" src="{{ post.post_image.url }}" width="550" height="900" />
+                                    <img src="{{ post.url }}" alt="">
+                                    <br /><small class="text-muted"
+                                    >{{ post.date_posted }}</small>
+
+                            <!--        {% if post.tags %}
+                                            <br />
+                                            <p class="text-danger ml-3">
+                                            <b>Tags: <i>{{ post.tags }}</i></b>
+                                            </p>
+                                        {% endif %} -->
+                                    </div>
+
+                                </div>
+                            {% else %}
+
+                                <div class="content-card text-card my-3">
+                                <div class="card-body">
+                                    <a href="{{ post.user_name.profile.get_absolute_url }}"><img
+                                    src="{{ post.user_name.profile.image.url }}"
+                                    class="rounded-circle"
+                                            width="80" height="80" alt=""/></a>
+                                    <a class="text-dark post-username" href="{{ post.user_name.profile.get_absolute_url }}"
+                                    ><b>{{ post.user_name }}</b></a>
+                                    
+                                    <br /><br />
+                                    <p class="card-text text-dark">{{ post.text_post }}</p>
+                                    <br /><small class="text-muted"
+                                    >{{ post.date_posted }}</small>
+
+                                    </div>
+                                        <!--        {% if post.tags %}
+                                            <br />
+                                            <p class="text-danger ml-3">
+                                            <b>Tags: <i>{{ post.tags }}</i></b>
+                                            </p>
+                                        {% endif %} -->
+                                
+                                </div>
+
+                            {% endif %}
+
+                        {% endfor %}
+ 
 
 
 
-                <div class="row justify-content-center my-row">       <!-- ROW 6  POSTS -->
-                    <div class="col-6 my-col my-col-61 text-center">
-                        <h1>Posts</h1> 
+
+
+
+
+
+
+
+
+
+
+
+
                     </div>  
                 </div> 
 
@@ -171,9 +251,6 @@
 
                 <div class="row justify-content-center my-row">       <!-- ROW 7  TESTS -->
                     <div class="col-6 my-col my-col-61 text-center">
-                        <h4>Friends</h4>
-
-                        <h3>{{ u.profile.friends.count}}</h3>
 
 
                     </div>  
