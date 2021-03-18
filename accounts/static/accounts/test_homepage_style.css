@@ -133,7 +133,7 @@
 /* NEW CHANGES */
 
 .tabs{
-  margin-top: 20px;
+  margin-top: 100px;
   /*box-shadow: 1px 1px 3px rgba(0,0,0,0.9);*/
 }
 
@@ -141,6 +141,12 @@
   color: #fff;
 
 }
+
+#tab-heading-1{
+  margin-top: 5rem;
+}
+
+
 
 
 
