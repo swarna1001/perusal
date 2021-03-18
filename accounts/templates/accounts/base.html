@@ -119,7 +119,7 @@
     <div class="row my-row">        <!-- MAIN ROW  -->
 
         <!-- SIDEBAR COLUMN -->    
-        <div class="col-md-2 col-sm-0 my-col top-col my-col-11">
+        <div class="col-md-2 col-sm-4 my-col top-col my-col-11">
             <div class="wrapper">
                 <div class="sidebar">
                     <div class="sidebar-menu">
@@ -148,12 +148,12 @@
                         </li>
 
                         <li class="item">
-                            <a href="#profile" class="menu-btn">
+                            <a href="#profile" class="menu-btn read-menu ">
                             <i class="fas fa fa-book"></i><span>Read List</span></a>
                         </li>
 
                         <li class="item">
-                            <a href="{% url 'accounts:friend_list' %}" class="menu-btn">
+                            <a href="{% url 'accounts:friend_list' %}" class=" friend-menu menu-btn">
                             <i class="fas fa fa-users"></i><span> Friends</span> </a>
                         </li>
 
@@ -177,7 +177,7 @@
 
 
 
-        <div class="col-md-10 my-col top-col my-col-12 "> <!-- CONTENT COLUMN -->
+        <div class="col-md-10 col-sm-8 my-col top-col my-col-12 "> <!-- CONTENT COLUMN -->
 
              {% block content %}
 
