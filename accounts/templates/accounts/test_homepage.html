@@ -74,7 +74,7 @@
 
                 <!-- ROW 4   CONTENT ROW  -->
                 <div class="row my-row row-4">    
-                    <div class="col-md-12 col-sm-8 my-col my-col-41 ">
+                    <div class="col-md-10 col-sm-8 my-col my-col-41 ">
                         <hr/>
                         <h4>POSTS</h4> 
 
@@ -138,6 +138,27 @@
                         {% endfor %}
 
                     </div>  
+
+
+
+
+                                        
+                    <div class="col-md-2 my-col my-col-42">
+
+                         <div id="mybutton">
+                        
+                        <form action="{% url 'feed:post-create' %}" method="post">
+                            {% csrf_token %}
+                            <button class="btn btn-colour-1 my-2 my-sm-0 feedback" type="submit"> <i class="fas fa-plus-circle "></i>Add Post
+                            </button>
+                        </form>
+
+                        </div>
+
+
+
+                    </div>
+
                 </div>
 
 

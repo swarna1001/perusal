@@ -243,3 +243,7 @@ hr {
   color: #ffffff;
   border-color: #003D4F;
 }
+
+.msg-btn{
+    margin-right: 1rem;
+}

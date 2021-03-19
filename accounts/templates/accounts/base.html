@@ -34,7 +34,7 @@
         .my-container{
             /*margin-left: 230px;*/
             border: 1px solid green; 
-           /* max-width: 1280px;  
+           /* max-width: 1280px; */ 
         }
   
         .my-col{
@@ -43,7 +43,7 @@
         
          .my-row{
             border: 1px solid red;
-         } */
+         } 
 
         </style>
 
@@ -93,19 +93,30 @@
 
                 <ul class="navbar-nav ml-auto"> 
 
-                    <li class="nav-item">
+                <!--    <li class="nav-item">
                         <form class="top-item" action="{% url 'feed:post-create' %}" method="post">
                             {% csrf_token %}
                             <button class="btn btn-colour-1 my-2 my-sm-0" type="submit">Add Post
                             </button>
                         </form>
-                    </li>
+                    </li> -->
+
+                    <li class="nav-item">
+
+                        <form action="{% url 'feed:post-create' %}" method="post">
+                            {% csrf_token %}
+                            <button class="btn msg-btn my-2 my-sm-0" type="submit"> 
+                            <i class="fas fa-bell fa-lg"></i> </button>
+                        </form>
+                        
+                    </li> 
 
 
                     <li class="nav-item">
                         <form action="/accounts/logout/" method="post">
                             {% csrf_token %}
-                            <button class="btn btn-colour-1 my-2 my-sm-0" type="submit"> Logout
+                            <button class="btn btn-colour-2 my-2 my-sm-0" type="submit"> 
+                            <i class="fas fa-sign-out-alt fa-lg"></i> 
                             </button>
                         </form>
                     </li>
@@ -138,35 +149,35 @@
 
                         <li class="item">
                             <a href="{% url 'accounts:homepage' %}" class="menu-btn">
-                            <i class="fas fa fa-home"></i><span>Home</span>
+                            <i class="fas fa fa-home fa-fw"></i><span>Home</span>
                             </a>
                         </li>
 
                         <li class="item">
                             <a href="{% url 'accounts:genres' %}"  class="menu-btn">
-                            <i class="fa fa-sticky-note"></i><span>Genres</span></a>
+                            <i class="fa fa-sticky-note fa-fw"></i><span>Genres</span></a>
                         </li>
 
                         <li class="item">
                             <a href="#profile" class="menu-btn read-menu ">
-                            <i class="fas fa fa-book"></i><span>Read List</span></a>
+                            <i class="fas fa fa-book fa-fw"></i><span>Read List</span></a>
                         </li>
 
                         <li class="item">
                             <a href="{% url 'accounts:friend_list' %}" class=" friend-menu menu-btn">
-                            <i class="fas fa fa-users"></i><span> Friends</span> </a>
+                            <i class="fas fa fa-users fa-fw"></i><span> Friends</span> </a>
                         </li>
 
                         <li class="item">
                         <a href="{% url 'feed:user-posts' user.username %}" class="menu-btn">
-                            <i class="fas fa-newspaper"></i><span>Posts</span></a>
+                            <i class="fas fa-newspaper fa-fw"></i><span>Posts</span></a>
                         </li>
 
                         <div>
                             <center> <hr class="solid"> </center>
                             <li class="item" id="settings">
                                 <a href="{% url 'feed:post-home' %}" class="menu-btn">
-                                <i class="fas fa-cog"></i><span>Settings</span> </a>
+                                <i class="fas fa-cog fa-fw"></i><span>Settings</span> </a>
                             </li>
                         </div>
                         
