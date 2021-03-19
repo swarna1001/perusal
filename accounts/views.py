@@ -576,8 +576,59 @@ def users_list(request):
 	return render(request, "accounts/users_list.html", context)
 
 
-# any user's profile view
+
 @login_required
+def profile_view(request, slug):
+
+	p = Profile.objects.filter(slug=slug).first()
+	u = p.user
+	print(type(p))
+	sent_friend_requests = FriendRequest.objects.filter(from_user=p.user)
+	rec_friend_requests = FriendRequest.objects.filter(to_user=p.user)
+	user_posts = Post.objects.filter(user_name=u)
+
+	friends = p.friends.all()
+
+	# is this user our friend
+	button_status = 'none'
+	if p not in request.user.profile.friends.all():
+		button_status = 'not_friend'
+
+		# if we have sent him a friend request
+		if len(FriendRequest.objects.filter(
+			from_user=request.user).filter(to_user=p.user)) == 1:
+				button_status = 'friend_request_sent'
+
+		# if we have recieved a friend request
+		if len(FriendRequest.objects.filter(
+			from_user=p.user).filter(to_user=request.user)) == 1:
+				button_status = 'friend_request_received'
+
+	# get genres to be displayed in the view
+	current_user = p.user
+	existing_genres = current_user.profile.genres
+	
+	context = {
+		'u': u,
+		'button_status': button_status,
+		'friends_list': friends,
+		'sent_friend_requests': sent_friend_requests,
+		'rec_friend_requests': rec_friend_requests,
+		'existing_genres' : existing_genres,
+		'post_count': user_posts.count
+	}
+
+	return render(request, "accounts/profile.html", context)
+
+
+
+
+
+
+
+
+# any user's profile view
+"""@login_required
 def profile_view(request, slug):
 
 	p = Profile.objects.filter(slug=slug).first()
@@ -618,7 +669,7 @@ def profile_view(request, slug):
 		'user_posts' : user_posts
 	}
 
-	return render(request, "accounts/profile.html", context)
+	return render(request, "accounts/profile.html", context)"""
 
 
 
@@ -662,17 +713,34 @@ def friend_list(request):
 
 # EARLIER VERSION
 
-def friend_list(request):
+"""def friend_list(request):
 	p = request.user.profile
 	friends = p.friends.all()
 	context = { 
 		'friends' : friends
 	}
+	return render (request, "accounts/friends_list.html", context)"""
+
+
+
+def friend_list(request):
+	p = request.user.profile
+
+	you = p.user
+	print(type(you))
+	sent_friend_requests = FriendRequest.objects.filter(from_user = you)
+	rec_friend_requests = FriendRequest.objects.filter(to_user = you)
+
+	print(rec_friend_requests)
+
+
+	friends = p.friends.all()
+	context = { 
+		'sent_friend_requests': sent_friend_requests,
+		'rec_friend_requests': rec_friend_requests,
+		'friends' : friends
+	}
 	return render (request, "accounts/friends_list.html", context)
-
-
-
-
 
 
 @login_required
@@ -696,6 +764,31 @@ def cancel_friend_request(request, id):
 	return HttpResponseRedirect('/accounts/homepage/')
 
 
+"""@login_required
+def accept_friend_request(request, id):
+	from_user = get_object_or_404(User, id = id)
+	frequest = FriendRequest.objects.filter(from_user = from_user, to_user = request.user).first()
+	user_1 = frequest.to_user
+	user_2 = from_user
+
+	user_1.profile.friends.add(user_2.profile)
+	user_2.profile.friends.add(user_1.profile)
+
+	if(FriendRequest.objects.filter(from_user = request.user, to_user = from_user).first()):
+		request_received = FriendRequest.objects.filter(from_user = request.user, 
+			to_user = from_user).first()
+
+		request_received.delete()
+
+	frequest.delete()
+
+	messages.success(request, f'your profile has been updated!')
+    #return redirect('accounts:homepage')
+	return HttpResponseRedirect('/accounts/friend_list/')"""
+
+
+
+
 @login_required
 def accept_friend_request(request, id):
 	from_user = get_object_or_404(User, id = id)
@@ -713,7 +806,12 @@ def accept_friend_request(request, id):
 		request_received.delete()
 
 	frequest.delete()
-	return HttpResponseRedirect('/accounts/homepage/')
+	#return HttpResponseRedirect('/accounts/friend_list/')
+		
+
+	messages.success(request, " {} has been added to friends list!".format(user_2.username))
+
+	return redirect('accounts:friend_list')
 
 
 @login_required
