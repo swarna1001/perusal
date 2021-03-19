@@ -86,6 +86,7 @@ hr.solid{
   color: #bbb;
   font-weight: 700;
   margin-bottom: 10px;
+
 }
 
 .wrapper .sidebar .sidebar-menu .item{
@@ -122,6 +123,10 @@ hr.solid{
 }
 
 .wrapper .sidebar .sidebar-menu .item .menu-btn:hover{
+  color: #d6cbd3;
+}
+
+.wrapper .sidebar .sidebar-menu .menu-btn:hover{
   color: #d6cbd3;
 }
 

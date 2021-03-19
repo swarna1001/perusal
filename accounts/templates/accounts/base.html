@@ -136,7 +136,9 @@
                     <div class="sidebar-menu">
                         <center class="profile">
                             <img src="{{ user.profile.image.url }}" alt="">
-                            <p> {{ user.username }} </p>
+                            <a href="{% url 'accounts:my_profile' %}" class="menu-btn"><p> 
+                            {{ user.username }} </p></a>
+
                             <hr class="solid">
                         </center>
 

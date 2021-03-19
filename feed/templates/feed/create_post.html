@@ -5,52 +5,38 @@
 {% load crispy_forms_tags %}
 
 {% block cssfiles %}
-    <!-- Add custom CSS files -->
+    <link rel="stylesheet" type="text/css" href="{% static 'feed/create_post_style.css' %}"/>
+
 {% endblock cssfiles %}
 
 
 {% block content %}
 
 
-                <div class="row justify-content-center my-row row-3">    
-                    <div class="col-6 my-col my-col-31 text-center">
-
-                        <div class="user-post">
-
-                            <div class="card card-signin my-5">
-        <div class="card-body">
-          <h5 class="card-title text-center"><b>Post</b></h5>
-          <form class="form-signin" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <fieldset class="form-group">
-              <br />
-              {{ form|crispy }}
-            </fieldset>
-            <div class="form-group">
-              <button
-                class="btn btn-lg btn-primary btn-block text-uppercase"
-                type="submit"
-              >
-                Post</button
-              ><br />
-            </div>
-          </form>
-        </div>
-      </div>
+    <div class="row justify-content-center my-row top-row">    
+        <div class="col-12 my-col my-col-31 text-center">
+            <div class="user-post">
+                <div class="card  ">
+                    <div class="card-body">
+                        <h5 class="card-title"><b>Post</b></h5>
                             
-
-
-
-
-
-
-                        </div>
-
-
-
-
+                            <form class="form-signin" method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <fieldset class="form-group">
+                                    <br />
+                                    {{ form|crispy }}
+                                </fieldset>
+                                
+                                <div class="form-group">
+                                    <button class="btn btn-lg btn-primary btn-block text-uppercase"
+                                    type="submit"> Post</button> <br />
+                                </div>
+                            </form>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
 
 
 {% endblock content %}

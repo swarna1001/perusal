@@ -18,6 +18,12 @@ urlpatterns = [
     url(r'^genres/$', views.genres_view, name="genres"),
     url(r'^friends/$', views.friend_list, name="friend_list"),
 
+
+    url(r'^my_profile/$', views.my_profile, name="my_profile"),
+
+
+
+
     path('friends/friend/delete/<int:id>/', views.delete_friend_using_friends_list, 
     	name='delete_friend'),
     

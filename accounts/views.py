@@ -756,4 +756,29 @@ def my_profile(request):
 	user_posts = Post.objects.filter(user_name = you)
 	friends = p.friends.all()
 
+		# is this user our friend
+	button_status = 'none'
+	if p not in request.user.profile.friends.all():
+		button_status = 'not_friend'
+
+		# if we have sent him a friend request
+		if len(FriendRequest.objects.filter(
+			from_user=request.user).filter(to_user=you)) == 1:
+				button_status = 'friend_request_sent'
+
+		if len(FriendRequest.objects.filter(
+			from_user=p.user).filter(to_user=request.user)) == 1:
+				button_status = 'friend_request_received'
+
+	context = {
+		'u': you,
+		'button_status': button_status,
+		'friends_list': friends,
+		'sent_friend_requests': sent_friend_requests,
+		'rec_friend_requests': rec_friend_requests,
+		'post_count': user_posts.count
+	}
+
+	return render(request, "accounts/my_profile.html", context)
+
 
