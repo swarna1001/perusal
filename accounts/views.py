@@ -816,10 +816,11 @@ def accept_friend_request(request, id):
 
 @login_required
 def delete_friend_request(request, id):
-	from_user = get_object_or_404(User, id)
+	from_user = get_object_or_404(User, id = id)
 	frequest = FriendRequest.objects.filter(from_user = from_user, to_user = request.user).first()
 	frequest.delete()
-	return HttpResponseRedirect('/accounts/homepage/')
+	return redirect('accounts:friend_list')
+
 
 
 def delete_friend_using_friends_list(request, id):

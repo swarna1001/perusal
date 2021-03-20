@@ -15,8 +15,8 @@
     <!-- ############## till here COMMON TEMPLATE FOR ALL THE PAGES  ################# -->
 
 
-
-    <div class="row top-row">
+<!-- Django messages -->
+<!--<div class="row top-row">
         <div class="col-md-8">
             {% if messages %}
                 {% for message in messages %}
@@ -28,7 +28,7 @@
                 {% endfor %}
             {% endif %}       
         </div>
-    </div>
+    </div>-->
 
 
             <div class="row justify-content-center my-row top-row">
@@ -36,7 +36,7 @@
                         
                     <div class="tabs">
 
-                        <input type="radio" name="tabs" id="tabone" checked="checked">
+                        <input type="radio" name="tabs" id="tabone" >
                             <label for="tabone" id="tab-heading-1">Friends</label>
                             <div class="tab">
                                 <div class="right-sidebar">
@@ -58,7 +58,7 @@
                                 </div>
                             </div>
   
-                        <input type="radio" name="tabs" id="tabtwo">
+                        <input type="radio" name="tabs" id="tabtwo" checked="checked">
                             <label for="tabtwo" id="tab-heading-2">Requests</label>
                             <div class="tab">
                                         <div class="col-md-6">
