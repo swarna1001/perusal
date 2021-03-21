@@ -61,21 +61,28 @@
                         <input type="radio" name="tabs" id="tabtwo" checked="checked">
                             <label for="tabtwo" id="tab-heading-2">Requests</label>
                             <div class="tab">
-                                        <div class="col-md-6">
-                                    <div class="card card-signin my-5">
-                                    <div class="card-body">
-                                        <h2>Friend Requests Recieved ({{ rec_friend_requests.count }})</h2>
-                                        <hr class="my-2" />
+                                    <h2>Friend Requests Recieved ({{ rec_friend_requests.count }})</h2>
+                                    <hr class="my-5" />
+                                    <div class=" right-sidebar">
+                                    
+                                        
+                                        
                                         {% if not rec_friend_requests %}
                                         <h5><i>No recieved requests!</i></h5>
+
+                                        <div class="card-body">
+
                                         {% else %} {% for r_request in rec_friend_requests %}
+
+                                        <div class="card side-card-2">
+
                                         <a href="{{ r_request.from_user.profile.get_absolute_url }}">
                                         <img src="{{ r_request.from_user.profile.image.url }}" class="rounded mr-2" width="40" height="40" alt=""/></a>
                                         
-                                        <a class="mr-2 align-middle" href="{{ r_request.from_user.profile.get_absolute_url }}"><b>
+                                        <a href="{{ r_request.from_user.profile.get_absolute_url }}"><b>
                                         {{ r_request.from_user.username }}</b> </a>
             
-                                        <small class="float-right">
+                                        <small>
                                         
                                             <a class="btn btn-success mr-2" href="/accounts/friend-request/accept/{{ r_request.from_user.id }}"> Accept </a>
                             
@@ -87,7 +94,6 @@
                                     </div>
                                     </div>
                                 </div>
-                            </div>
   
                     </div>
                 </div>

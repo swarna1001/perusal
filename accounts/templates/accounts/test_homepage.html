@@ -10,8 +10,6 @@
 {% endblock cssfiles %}
 
 {% block content %}
-
-
     <!-- ############## till here COMMON TEMPLATE FOR ALL THE PAGES  ################# -->
 
                 <!-- ROW 3  READS AND SUGGESTIONS-->
@@ -42,24 +40,29 @@
                             <input type="radio" name="tabs" id="tabtwo" checked="checked">
                             <label for="tabtwo" id="tab-heading-2">Suggested</label>
                             <div class="tab">
-                                <div class="suggested">                                    
+                                <div class="suggested ">                                    
                                     {% if location_suggest %} 
-                                        {% for user_p in location_suggest %}
+                                        {% for sugg_loc in location_suggest %}
                                             <div class="card side-card">
-                                                <a href="{{ user_p.get_absolute_url }}"><img
-                                                src="{{ user_p.image.url }}" class="rounded mr-2" width="80" height="80" alt=""/></a>
-                                                <a class="text-dark" href="{{ user_p.get_absolute_url }}"><b> {{ user_p }} </b></a>
+                                                <a href="{{ sugg_loc.get_absolute_url }}"><img class="suggest-image" src="{{ sugg_loc.image.url }}" alt=""/></a>
+                                                <a class="text-dark" href="{{ sugg_loc.get_absolute_url }}"><b> {{ sugg_loc }} </b></a>
+
+                                                <small>
+                                                    <a class="btn btn-info profile-btn " href="/accounts/friend-request/send/{{ sugg_loc.user.id }}/" > Request </a>
+                                                </small>
                                             </div>
                                         {% endfor %}
                                     {% endif %} 
 
+                                    {% if not_friend_neither_location %} 
+                                        {% for sugg_user in not_friend_neither_location %}
+                                            <div class="card side-card ">
+                                                <a href="{{ sugg_user.get_absolute_url }}"><img class="suggest-image" src="{{ sugg_user.image.url }}" class="rounded mr-2" alt=""/></a>
+                                                <a class="text-dark" href="{{ sugg_user.get_absolute_url }}"><b> {{ sugg_user }} </b></a>
 
-                                    {% if not_friend_neither_location_list %} 
-                                        {% for user_p in not_friend_neither_location_list %}
-                                            <div class="card side-card">
-                                                <a href="{{ user_p.get_absolute_url }}"><img
-                                                src="{{ user_p.image.url }}" class="rounded mr-2" width="80" height="80" alt=""/></a>
-                                                <a class="text-dark" href="{{ user_p.get_absolute_url }}"><b> {{ user_p }} </b></a>
+                                                <small>
+                                                    <a class="btn btn-info btn-sm profile-btn " href="/accounts/friend-request/send/{{ sugg_user.user.id }}/" > Request </a>
+                                                </small>
                                             </div>
                                         {% endfor %}
                                     {% endif %} 

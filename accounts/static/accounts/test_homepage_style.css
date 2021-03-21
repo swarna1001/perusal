@@ -7,6 +7,13 @@
   margin-top: 25px;
  }
 
+
+ .suggest-image{
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+ }
+
  .card{
   background: #fff;
   padding: 15px;
@@ -28,7 +35,7 @@
 
 
 .main-card {
-  display: inline-grid;
+  display: inline-flex;
   width: 100px;
   height: 120px;
   border-radius: 10px;
@@ -55,7 +62,7 @@
 
 
 .side-card {
-  display: inline-grid;
+  display: inline-flex;
   width: 110px;
   height: 150px;
   border-radius: 18px;

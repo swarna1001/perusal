@@ -87,38 +87,96 @@ def homepage_view(request):
 	# friend's friend - 2
 	# same read_list - 2
 
-	# user's location
+	# FILTER : 1 (USER LOCATION, NOT IN SENT OR RECEIVED REQUESTS, NOT IN FRIENDS)
+
 	user_loc = request.user.profile.city
+
+	sent_friend_requests = FriendRequest.objects.filter(from_user = request.user)
+	rec_friend_requests = FriendRequest.objects.filter(to_user = request.user)
 
 	#new_list = Profile.objects.filter(city = user_loc).exclude(friends = request.user.profile)
 	#print("NEW ::::", new_list)
 
 	# WORKING QUERY - 1, queries same location users which are not friends
-	new_list_2 = Profile.objects.filter(city = user_loc).exclude(friends = request.user.profile).exclude(user=request.user)
+	location_suggest = Profile.objects.filter(city = user_loc).exclude(friends = request.user.profile).exclude(user=request.user)
 	#print("NEW AGAIN::::", new_list_2)
 
 	# randomized and limited to 5 (sent to template)
-	location_suggest = random.sample(list(new_list_2), min(len(list(new_list_2)), 5))
+	"""location_suggest_list = random.sample(list(new_list_2), min(len(list(new_list_2)), 5))"""
+
+	# filtering requested users
+	for req in sent_friend_requests:
+		for item in location_suggest:
+			if req.to_user== item.user:
+				location_suggest = location_suggest.exclude(user = req.to_user)
 
 
+	# filtering users who requested the current user
+	for r_req in rec_friend_requests:
+		for item in location_suggest:
+			if r_req.from_user == item.user:
+				location_suggest = location_suggest.exclude(user = r_req.from_user)
+				
 
+
+#-------------------------------------------------------------------------------------------------
+	
+	# FILTER : 2 (NOT IN LOCATION, FRIENDS, SENT OR RECEIVED REQUESTS)
+
+	
 	not_friends = Profile.objects.exclude(friends = request.user.profile)
 	not_friends_suggest_list = not_friends.exclude(user = request.user)
 
-	# WORKING QUERY - 2, NOT friends NOT same location
+	#NOT friends NOT same location
 	not_friend_neither_location = not_friends_suggest_list.exclude(city=user_loc)
-	#print(not_friend_neither_location)
 
 	# randomized and limited to 10 (sent to template)
-	not_friend_neither_location_list = random.sample(list(not_friend_neither_location), 
-		min(len(list(not_friend_neither_location)), 10))
+	"""not_friend_neither_location_list = random.sample(list(not_friend_neither_location), 
+		min(len(list(not_friend_neither_location)), 10))"""
+
+
+
+	# filtering requested users
+	for req in sent_friend_requests:
+		for item in not_friend_neither_location:
+			if req.to_user== item.user:
+				#print(req.to_user.id)
+				not_friend_neither_location = not_friend_neither_location.exclude(user = req.to_user)
+
+	# filtering users who requested the current user
+	for r_req in rec_friend_requests:
+		for item in not_friend_neither_location:
+			if r_req.from_user == item.user:
+				#print(r_req.from_user.id)
+				not_friend_neither_location = not_friend_neither_location.exclude(user = r_req.from_user)
+				#print(not_friend_neither_location)
+
+
+	#print("111111111111111111111111111", not_friend_neither_location)
+
+	#print(type(not_friend_neither_location))
+
+
+
+
+#-----------------------------------PERFECTLY WORKING ----------------------------------------------
 
 
 
 
 
 
-	#----------------PERFECTLY WORKING -------------------
+
+
+
+
+
+
+
+
+
+
+	# posts by all the users except the current users
 
 	posts = Post.objects.all().order_by('-date_posted').exclude(user_name = request.user)
 
@@ -150,8 +208,11 @@ def homepage_view(request):
 
 
 	context = {
+			
+			'sent_friend_requests': sent_friend_requests,
+
 			'location_suggest' : location_suggest,
-			'not_friend_neither_location_list' : not_friend_neither_location_list,
+			'not_friend_neither_location' : not_friend_neither_location,
 			'posts' : posts
 
 	}
@@ -582,7 +643,8 @@ def profile_view(request, slug):
 
 	p = Profile.objects.filter(slug=slug).first()
 	u = p.user
-	print(type(p))
+	print(u)
+	print(type(u))
 	sent_friend_requests = FriendRequest.objects.filter(from_user=p.user)
 	rec_friend_requests = FriendRequest.objects.filter(to_user=p.user)
 	user_posts = Post.objects.filter(user_name=u)
@@ -750,7 +812,20 @@ def send_friend_request(request, id):
 						from_user = request.user,
 						to_user = user )
 
-	return HttpResponseRedirect('/accounts/homepage/')
+	#return HttpResponseRedirect('/accounts/homepage/')
+	return redirect('accounts:homepage')
+
+#NEWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 20/03-------------------------------------------
+@login_required
+def send_friend_request_from_homepage(request, id):
+	user = get_object_or_404 (User, id = id)
+	frequest , created = FriendRequest.objects.get_or_create(
+						from_user = request.user,
+						to_user = user )
+
+	#return HttpResponseRedirect('/accounts/homepage/')
+	return redirect('accounts:homepage')
+	
 
 
 @login_required
