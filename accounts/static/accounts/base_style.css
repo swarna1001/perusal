@@ -14,8 +14,8 @@ body{
 .title{
   color: #fff;
   font-size: 25px;
-  text-transform: uppercase;
-  font-weight: 900;
+  /*text-transform: uppercase;*/
+  font-weight: 1000;
 }
 
 .title span{
