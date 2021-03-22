@@ -102,3 +102,15 @@
   margin-top: 80px;
 }
 
+
+.suggest-image{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+ }
+
+
+.rec-btn{
+  margin-right: 1.5rem;
+  margin-top: 1rem;
+}

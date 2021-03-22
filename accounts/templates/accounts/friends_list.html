@@ -31,7 +31,7 @@
     </div>-->
 
 
-            <div class="row justify-content-center my-row top-row">
+            <div class="row justify-content-around my-row top-row">
                 <div class="col-12 my-col my-col-41 text-left">
                         
                     <div class="tabs">
@@ -67,22 +67,22 @@
                                 <div class="col-md-5">
                                     <div class="card card-signin my-5">
                                     <div class="card-body">
-                                        <h2>Friend Requests Recieved ({{ rec_friend_requests.count }})</h2>
-                                        <hr class="my-2" />
+                                        <h3>Recieved ({{ rec_friend_requests.count }})</h3>
+                                        <hr class="my-4" />
                                         {% if not rec_friend_requests %}
                                         <h5><i>No recieved requests!</i></h5>
                                         {% else %} {% for r_request in rec_friend_requests %}
                                         <a href="{{ r_request.from_user.profile.get_absolute_url }}">
-                                        <img src="{{ r_request.from_user.profile.image.url }}" class="rounded mr-2" width="40" height="40" alt=""/></a>
+                                        <img class="suggest-image" src="{{ r_request.from_user.profile.image.url }}" class="rounded mr-4"  alt=""/></a>
                                         
-                                        <a class="mr-2 align-middle" href="{{ r_request.from_user.profile.get_absolute_url }}"><b>
+                                        <a class="mr-2 text-dark align-middle" href="{{ r_request.from_user.profile.get_absolute_url }}"><b>
                                         {{ r_request.from_user.username }}</b> </a>
             
                                         <small class="float-right">
                                         
-                                            <a class="btn btn-success mr-2" href="/accounts/friend-request/accept/{{ r_request.from_user.id }}"> Accept </a>
+                                            <a class="btn btn-outline-success btn-sm rec-btn" href="/accounts/friend-request/accept/{{ r_request.from_user.id }}"> Accept </a>
                             
-                                            <a class="btn btn-danger" href="/accounts/friend-request/delete/{{ r_request.from_user.id }}" >Reject</a>
+                                            <a class="btn btn-outline-danger btn-sm rec-btn" href="/accounts/friend-request/delete/{{ r_request.from_user.id }}" >Delete</a>
                                         
                                         </small> <br /><br />
                                         
@@ -97,24 +97,30 @@
                                 <div class="col-md-5">
                                     <div class="card card-signin my-5">
                                     <div class="card-body">
-                                        <h2>Friend Requests Sent ({{ sent_friend_requests.count }})</h2>
-                                        <hr class="my-2" />
+                                        <h3> Sent ({{ sent_friend_requests.count }})</h3>
+                                        <hr class="my-4" />
                                         {% if not sent_friend_requests %}
                                         <h5><i>You have not requested anyone!</i></h5>
-                                        {% else %} {% for s_request in sent_friend_requests %}
-                                        <a href="{{ s_request.to_user.profile.get_absolute_url }}">
-                                        <img src="{{ s_request.to_user.profile.image.url }}" class="rounded mr-2" width="40" height="40" alt=""/></a>
+                                        {% else %} 
+                                            {% for s_request in sent_friend_requests %}
                                         
-                                        <a class="mr-2 align-middle" href="{{ s_request.to_user.profile.get_absolute_url }}"><b>
-                                        {{ s_request.to_user.username }}</b> </a>
+                                                <a href="{{ s_request.to_user.profile.get_absolute_url }}">
+                                                <img class="suggest-image" src="{{ s_request.to_user.profile.image.url }}" class="rounded mr-2" alt=""/></a>
+                                        
+                                                <a class="mr-2 align-middle text-dark" href="{{ s_request.to_user.profile.get_absolute_url }}"><b>
+                                                {{ s_request.to_user.username }}</b> </a>
             
-                                        <small class="float-right">
+                                                <small class="float-right">
 
-                                            <a class="btn btn-danger profile-btn" href="/accounts/friend-request/delete/{{ s_request.to_user.id }}/" > Delete </a>
+                                                    <a class="btn btn-outline-warning btn-sm rec-btn" href="/accounts/friend-request/cancel/{{ s_request.to_user.id }}/" > Cancel </a>
                                         
-                                        </small> <br /><br />
+                                                </small> <br /><br />
                                         
-                                        {% endfor %} {% endif %}
+                                            {% endfor %} 
+                                        {% endif %}
+
+
+
                                     </div>
                                     </div>
                                 </div>

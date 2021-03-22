@@ -48,11 +48,12 @@
                                                 <a class="text-dark" href="{{ sugg_loc.get_absolute_url }}"><b> {{ sugg_loc }} </b></a>
 
                                                 <small>
-                                                    <a class="btn btn-info profile-btn " href="/accounts/friend-request/send/{{ sugg_loc.user.id }}/" > Request </a>
+                                                    <a class="btn btn-info btn-sm profile-btn " href="/accounts/friend-request/send/{{ sugg_loc.user.id }}/" > Request </a>
                                                 </small>
                                             </div>
                                         {% endfor %}
                                     {% endif %} 
+
 
                                     {% if not_friend_neither_location %} 
                                         {% for sugg_user in not_friend_neither_location %}
