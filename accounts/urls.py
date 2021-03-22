@@ -27,6 +27,10 @@ urlpatterns = [
     path('friends/friend/delete/<int:id>/', views.delete_friend_using_friends_list, 
     	name='delete_friend'),
 
+    path('friends/friend-request/delete/<int:id>/', views.delete_friend_request_from_friend_list, 
+        name='delete_friend_request'),
+
+
     #path('homepage/friend-request/send/<int:id>/', views.send_friend_request_from_homepage, 
         #name='request_friend'),
     

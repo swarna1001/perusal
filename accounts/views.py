@@ -163,19 +163,6 @@ def homepage_view(request):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 	# posts by all the users except the current users
 
 	posts = Post.objects.all().order_by('-date_posted').exclude(user_name = request.user)
@@ -787,14 +774,9 @@ def friend_list(request):
 
 def friend_list(request):
 	p = request.user.profile
-
 	you = p.user
-	print(type(you))
 	sent_friend_requests = FriendRequest.objects.filter(from_user = you)
 	rec_friend_requests = FriendRequest.objects.filter(to_user = you)
-
-	print(rec_friend_requests)
-
 
 	friends = p.friends.all()
 	context = { 
@@ -896,6 +878,17 @@ def delete_friend_request(request, id):
 	frequest.delete()
 	return redirect('accounts:friend_list')
 
+# 22/03 --------------------------------------------------------------------------
+
+@login_required
+def delete_friend_request_from_friend_list(request, id):
+	to_user = get_object_or_404(User, id = id)
+	frequest = FriendRequest.objects.filter(from_user = request.user, to_user = to_user).first()
+	frequest.delete()
+	return redirect('accounts:friend_list')
+
+#---------------------------------------------------------------------------------------
+
 
 
 def delete_friend_using_friends_list(request, id):
@@ -914,7 +907,9 @@ def delete_friend_visiting_profile(request, id):
 	user_profile.friends.remove(friend_profile)
 	friend_profile.friends.remove(user_profile)
 
-	return HttpResponseRedirect('/accounts/homepage/')
+	#return HttpResponseRedirect('/accounts/homepage/')
+	return redirect('accounts:homepage')
+
 
 
 

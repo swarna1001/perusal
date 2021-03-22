@@ -61,28 +61,24 @@
                         <input type="radio" name="tabs" id="tabtwo" checked="checked">
                             <label for="tabtwo" id="tab-heading-2">Requests</label>
                             <div class="tab">
-                                    <h2>Friend Requests Recieved ({{ rec_friend_requests.count }})</h2>
-                                    <hr class="my-5" />
-                                    <div class=" right-sidebar">
-                                    
-                                        
-                                        
+
+                            <div class="row justify-content-center my-row">
+
+                                <div class="col-md-5">
+                                    <div class="card card-signin my-5">
+                                    <div class="card-body">
+                                        <h2>Friend Requests Recieved ({{ rec_friend_requests.count }})</h2>
+                                        <hr class="my-2" />
                                         {% if not rec_friend_requests %}
                                         <h5><i>No recieved requests!</i></h5>
-
-                                        <div class="card-body">
-
                                         {% else %} {% for r_request in rec_friend_requests %}
-
-                                        <div class="card side-card-2">
-
                                         <a href="{{ r_request.from_user.profile.get_absolute_url }}">
                                         <img src="{{ r_request.from_user.profile.image.url }}" class="rounded mr-2" width="40" height="40" alt=""/></a>
                                         
-                                        <a href="{{ r_request.from_user.profile.get_absolute_url }}"><b>
+                                        <a class="mr-2 align-middle" href="{{ r_request.from_user.profile.get_absolute_url }}"><b>
                                         {{ r_request.from_user.username }}</b> </a>
             
-                                        <small>
+                                        <small class="float-right">
                                         
                                             <a class="btn btn-success mr-2" href="/accounts/friend-request/accept/{{ r_request.from_user.id }}"> Accept </a>
                             
@@ -94,6 +90,53 @@
                                     </div>
                                     </div>
                                 </div>
+
+
+
+                                
+                                <div class="col-md-5">
+                                    <div class="card card-signin my-5">
+                                    <div class="card-body">
+                                        <h2>Friend Requests Sent ({{ sent_friend_requests.count }})</h2>
+                                        <hr class="my-2" />
+                                        {% if not sent_friend_requests %}
+                                        <h5><i>You have not requested anyone!</i></h5>
+                                        {% else %} {% for s_request in sent_friend_requests %}
+                                        <a href="{{ s_request.to_user.profile.get_absolute_url }}">
+                                        <img src="{{ s_request.to_user.profile.image.url }}" class="rounded mr-2" width="40" height="40" alt=""/></a>
+                                        
+                                        <a class="mr-2 align-middle" href="{{ s_request.to_user.profile.get_absolute_url }}"><b>
+                                        {{ s_request.to_user.username }}</b> </a>
+            
+                                        <small class="float-right">
+
+                                            <a class="btn btn-danger profile-btn" href="/accounts/friend-request/delete/{{ s_request.to_user.id }}/" > Delete </a>
+                                        
+                                        </small> <br /><br />
+                                        
+                                        {% endfor %} {% endif %}
+                                    </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+                        </div> <!-- Request ROW END -->
+
+
+
+
+
+
+
+
+
+
+                            </div> <!--Tab div -->
   
                     </div>
                 </div>
