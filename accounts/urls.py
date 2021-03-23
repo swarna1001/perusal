@@ -21,6 +21,8 @@ urlpatterns = [
 
     url(r'^my_profile/$', views.my_profile, name="my_profile"),
 
+    url(r'^my_notifications/$', views.notification_view, name="notification"),
+
 
 
 

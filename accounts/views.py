@@ -951,3 +951,11 @@ def my_profile(request):
 	return render(request, "accounts/my_profile.html", context)
 
 
+
+def notification_view(request):
+	p = request.user.profile
+
+
+
+
+	return render(request, "accounts/notifications.html")

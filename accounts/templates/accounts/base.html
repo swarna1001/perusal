@@ -105,9 +105,22 @@
                         </form>
                     </li> -->
 
+
                     <li class="nav-item">
 
                         <form action="{% url 'feed:post-create' %}" method="post">
+                            {% csrf_token %}
+                            <button class="btn msg-btn my-2 my-sm-0" type="submit"> 
+                            <i class="fas fa-plus-circle  fa-lg"></i> </button>
+                        </form>
+                        
+                    </li>
+
+
+
+                    <li class="nav-item">
+
+                        <form action="{% url 'accounts:notification' %}" method="post">
                             {% csrf_token %}
                             <button class="btn msg-btn my-2 my-sm-0" type="submit"> 
                             <i class="fas fa-bell fa-lg"></i> </button>
