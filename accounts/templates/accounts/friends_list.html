@@ -2,6 +2,10 @@
 
 {% load static %}
 
+{% block title %}
+    <title>{{ user.username }}/friends</title>
+{% endblock title %}
+
 {% block cssfiles %}
 
     <link rel="stylesheet" type="text/css" href="{% static 'accounts/friends_style.css' %}"/>
@@ -47,7 +51,7 @@
                                             <a href="{{ user_p.get_absolute_url }}"> <img src="{{ user_p.image.url }}" class="friend-image" width="80" height="80" alt=""/></a>
                                             <a class="text-dark" href="{{ user_p.get_absolute_url }}">
                                             <b>{{ user_p }}</b></a>
-                                            <small> <a class="btn btn-danger" href="friend/delete/{{ user_p.id }}"> Delete </a>
+                                            <small> <a class="btn btn-danger btn-sm del-btn" href="friend/delete/{{ user_p.id }}"> Delete </a>
                                             </small>
                                             </div>
                                         {% endfor %}
@@ -62,10 +66,10 @@
                             <label for="tabtwo" id="tab-heading-2">Requests</label>
                             <div class="tab">
 
-                            <div class="row justify-content-center my-row">
+                            <div class="row justify-content-around my-row">
 
                                 <div class="col-md-5">
-                                    <div class="card card-signin my-5">
+                                    <div class="my-3">
                                     <div class="card-body">
                                         <h3>Recieved ({{ rec_friend_requests.count }})</h3>
                                         <hr class="my-4" />
@@ -95,7 +99,7 @@
 
                                 
                                 <div class="col-md-5">
-                                    <div class="card card-signin my-5">
+                                    <div class="my-3">
                                     <div class="card-body">
                                         <h3> Sent ({{ sent_friend_requests.count }})</h3>
                                         <hr class="my-4" />
