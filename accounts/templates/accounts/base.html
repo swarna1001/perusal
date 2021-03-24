@@ -117,13 +117,66 @@
                     </li>
 
 
-
                     <li class="nav-item">
 
                         <form action="{% url 'accounts:notification' %}" method="post">
                             {% csrf_token %}
                             <button class="btn msg-btn my-2 my-sm-0" type="submit"> 
-                            <i class="fas fa-bell fa-lg"></i> </button>
+                            <i class="fas fa-comments  fa-lg"></i> 
+                            <span class="badge badge-pill badge-success">{{rec_friend_requests.count}}</span>
+
+                            </button>
+
+                        </form>
+                        
+                    </li>
+
+
+
+
+
+                    <!-- DROP-DOWN menu -->
+
+                    <!--
+
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <button class="btn msg-btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-bell fa-lg"> </i><span class="badge badge-pill badge-success mr-2">{{total_notifications}}</span> 
+ 
+                            </button>
+
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                
+                                <a class="dropdown-item" href="{% url 'accounts:friend_list' %}">Requests  <span class="badge badge-pill badge-success mr-2">{{rec_friend_requests.count }}</span> 
+                                </a>
+
+                                <hr/>
+
+                                <a class="dropdown-item" href="{% url 'accounts:notification' %}">Messages <span class="badge badge-pill badge-success mr-2">67</span> 
+
+
+                                </a>
+                            </div>
+                        </div>
+                    </li>  -->
+
+
+                            <!--{{ rec_friend_requests.count  }} -->
+
+                    
+
+
+                    <li class="nav-item">
+
+                        <form action="{% url 'accounts:friend_list' %}" method="post">
+                            {% csrf_token %}
+                            <button class="btn msg-btn my-2 my-sm-0" type="submit"> 
+                            <i class="fas fa-bell fa-lg"></i>
+
+                            <span class="badge badge-pill badge-success">{{rec_friend_requests.count}}</span>
+ 
+                        </button>
                         </form>
                         
                     </li> 

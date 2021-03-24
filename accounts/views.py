@@ -189,15 +189,18 @@ def homepage_view(request):
 		print(gen_list)"""
 
 
-
-
+	total_notifications = int(sent_friend_requests.count()) + int(rec_friend_requests.count())
+	#print(total_notifications)
+	
+	
 
 
 
 	context = {
 			
 			'sent_friend_requests': sent_friend_requests,
-
+			'rec_friend_requests' : rec_friend_requests,
+			'total_notifications' : total_notifications,
 			'location_suggest' : location_suggest,
 			'not_friend_neither_location' : not_friend_neither_location,
 			'posts' : posts
@@ -954,6 +957,8 @@ def my_profile(request):
 
 def notification_view(request):
 	p = request.user.profile
+
+
 
 
 
