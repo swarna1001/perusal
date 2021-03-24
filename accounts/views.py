@@ -378,12 +378,18 @@ def genres_view(request):
 
 @login_required
 def genres_view(request):
+
+	rec_friend_requests = FriendRequest.objects.filter(to_user = request.user)
+
+
 	current_user = request.user
 	existing_genres = current_user.profile.genres
 	print("EXISTING GENRES :", existing_genres)
 
 	context = {
 			'existing_genres' : existing_genres,
+			'rec_friend_requests' : rec_friend_requests,
+
 	}
 	if request.method == "POST":
 		if request.POST.get('genres'):
@@ -547,6 +553,8 @@ def homepage_view(request):
 @login_required
 def edit_profile_view(request):
     # return HttpResponse(slug)
+    rec_friend_requests = FriendRequest.objects.filter(to_user = request.user)
+
     if request.method == "POST":
 
     	u_form = UserUpdateForm(request.POST, instance=request.user)
@@ -571,6 +579,8 @@ def edit_profile_view(request):
     context = {
     	'u_form' : u_form,
     	'p_form' : p_form,
+		'rec_friend_requests' : rec_friend_requests,
+
     }
 
     return render(request, 'accounts/edit_profile.html', context)
@@ -583,6 +593,9 @@ def edit_profile_view(request):
 
 @login_required
 def users_list(request):
+
+	rec_friend_requests = FriendRequest.objects.filter(to_user = request.user)
+
 	
 	users = Profile.objects.exclude(user = request.user)
 	sent_friend_requests = FriendRequest.objects.filter(from_user = request.user)
@@ -621,6 +634,7 @@ def users_list(request):
 
 	context = {
 			'users' : friends,
+			'rec_friend_requests' : rec_friend_requests,
 			'sent' : sent_to
 	}
 
@@ -630,6 +644,9 @@ def users_list(request):
 
 @login_required
 def profile_view(request, slug):
+
+	rec_friend_requests = FriendRequest.objects.filter(to_user = request.user)
+
 
 	p = Profile.objects.filter(slug=slug).first()
 	u = p.user
@@ -662,6 +679,7 @@ def profile_view(request, slug):
 	
 	context = {
 		'u': u,
+		'rec_friend_requests' : rec_friend_requests,
 		'button_status': button_status,
 		'friends_list': friends,
 		'sent_friend_requests': sent_friend_requests,
@@ -776,6 +794,7 @@ def friend_list(request):
 
 
 def friend_list(request):
+
 	p = request.user.profile
 	you = p.user
 	sent_friend_requests = FriendRequest.objects.filter(from_user = you)
@@ -920,6 +939,7 @@ def delete_friend_visiting_profile(request, id):
 
 @login_required
 def my_profile(request):
+
 	p = request.user.profile
 	you = p.user
 	sent_friend_requests = FriendRequest.objects.filter(from_user = you)
@@ -956,11 +976,21 @@ def my_profile(request):
 
 
 def notification_view(request):
+
+	rec_friend_requests = FriendRequest.objects.filter(to_user = request.user)
+
 	p = request.user.profile
 
 
+	context = {
+
+			'rec_friend_requests': rec_friend_requests,
+
+	}
 
 
 
 
-	return render(request, "accounts/notifications.html")
+
+
+	return render(request, "accounts/notifications.html", context)

@@ -39,9 +39,15 @@ class UserPostListView(LoginRequiredMixin, ListView):
 	def get_context_data(self, **kwargs):
 		context = super(UserPostListView, self).get_context_data(**kwargs)
 		user = get_object_or_404(User, username=self.kwargs.get('username'))
+		
+		# returns received friend requests for the notifications
+		rec_friend_requests = FriendRequest.objects.filter(to_user = user)
+		context['rec_friend_requests'] = rec_friend_requests
+
 		liked = [i for i in Post.objects.filter(user_name=user) 
 		if Like.objects.filter(user=self.request.user, post=i)]
 		context['liked_post'] = liked
+
 		return context
 
 
