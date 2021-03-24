@@ -24,9 +24,9 @@ body{
   font-family: "Lucida Handwriting", "Georgia";
 }
 
-.top-item{
+/*.top-item{
   padding-right: 1.75rem;
-}
+}*/
 
 .wrapper .sidebar{
   z-index: 1;
@@ -40,7 +40,7 @@ body{
 /* Modify the background color */ 
           
 .navbar-custom { 
-    background-color: #F0FFF0; 
+    background-color: #efefef; 
 } 
 /* Modify brand and text color */ 
           
@@ -250,16 +250,14 @@ hr {
 }
 
 .msg-btn{
-    margin-right: 1rem;
+    padding-right: 1px;
+
 }
 
 
+.btn .badge {
+    position: relative;
+    top: -15px;
+    left: -10px;
+}
 
-
- /*.badge {
-        position: relative;
-        top: -20px;
-        left: -25px;
-        border: 1px solid black;
-        border-radius: 50%;
-       }*/
