@@ -1,7 +1,7 @@
 # perusal
 A social networking site for bibliophiles!
 
-<img src = images/image_1.png width="900">
+<img src = images/image_2.png width="900">
 
 The aim of this site is to encourage reading as a hobby by providing a
 platform where you can meet readers with similar interests.
