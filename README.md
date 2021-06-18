@@ -13,4 +13,4 @@ their current reads, meet them and even exchange books.
 **Technologies used:**
 * Languages : Python, HTML, CSS, JavaScript
 * Frameworks : Django and Bootstrap
-* Database : SQLite (only during development phase)
+* Database : SQLite
