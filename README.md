@@ -1,4 +1,4 @@
-# perusal
+# ReadPost
 A social networking site for bibliophiles!
 
 <img src = images/image_2.png width="900">
