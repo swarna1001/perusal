@@ -2,7 +2,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.contrib.auth.models import User
-from . models import Profile
+from . models import Profile, BookCategory
 
 
 class RegisterForm(UserCreationForm):
@@ -28,6 +28,16 @@ class ProfileUpdateForm(forms.ModelForm):
 	class Meta:
 		model = Profile
 		fields = ['image', "city", "state", "bio"]
+
+
+class GenresChoiceForm(forms.ModelForm):
+
+	genre_1 = forms.ModelChoiceField(queryset=BookCategory.objects.all())
+	genre_2 = forms.ModelChoiceField(queryset=BookCategory.objects.all())
+	genre_3 = forms.ModelChoiceField(queryset=BookCategory.objects.all())
+	genre_4 = forms.ModelChoiceField(queryset=BookCategory.objects.all())
+	genre_5 = forms.ModelChoiceField(queryset=BookCategory.objects.all())
+
 
 
 """class GenresChoiceForm(forms.Form):

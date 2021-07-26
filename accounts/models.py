@@ -11,19 +11,16 @@ from django.conf import settings
 
 
 class Profile(models.Model):
-	user = models.OneToOneField(User, on_delete = models.CASCADE)
 
+	user = models.OneToOneField(User, on_delete = models.CASCADE)
 	image = models.ImageField(default = 'default.jpg', upload_to = 'profile_pics')
 	city = models.CharField(max_length=30, blank=True)
 	state = models.CharField(max_length=30, blank=True)
-
 	slug = AutoSlugField(populate_from='user')
 	bio = models.CharField(max_length=255, blank=True)
 	friends = models.ManyToManyField("Profile", blank=True)
-
 	genres = models.CharField(max_length=1000, blank=True)
 
-	
 
 	def __str__(self):
 		return f'{self.user.username}'
@@ -54,8 +51,35 @@ class FriendRequest(models.Model):
 
 	timestamp = models.DateTimeField(auto_now_add=True)
 
-
 	def __str__(self):
 		return "From {}, to {}".format(self.from_user.username, self.to_user.username)
+
+
+class BookCategory(models.Model):
+
+	category_name = models.CharField(max_length=250)
+	category_rank = models.IntegerField(unique=True)
+
+	def __str__(self):
+		return self.category_name
+
+
+class Book(models.Model):
+	name = models.CharField(max_length=500, null=False, blank=False)
+	cover_img = models.ImageField(upload_to = 'book_covers')
+	ISBN = models.CharField(max_length=15, null=True, blank=True)
+	category = models.ForeignKey(BookCategory, related_name='get_books', on_delete=models.CASCADE)
+	author = models.CharField(max_length=500,null=True, blank=True)
+	score = models.IntegerField(default=0)
+
+	def __str__(self):
+		return self.name
+
+	def get_score(self):
+		return self.score
+
+	def get_book_category(self):
+		return self.category
+	
 
 

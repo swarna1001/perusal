@@ -15,16 +15,13 @@ urlpatterns = [
 
     url(r'^homepage/$', views.homepage_view, name="homepage"),
 
-    url(r'^genres/$', views.genres_view, name="genres"),
+    url(r'^genres/$', views.new_genre, name="genres"),
     url(r'^friends/$', views.friend_list, name="friend_list"),
 
 
     url(r'^my_profile/$', views.my_profile, name="my_profile"),
 
     url(r'^my_notifications/$', views.notification_view, name="notification"),
-
-
-
 
     path('friends/friend/delete/<int:id>/', views.delete_friend_using_friends_list, 
     	name='delete_friend'),

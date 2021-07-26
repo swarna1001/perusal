@@ -6,12 +6,12 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-from .models import Profile, FriendRequest
+from .models import Profile, FriendRequest, BookCategory, Book
 
 # add Post model to the feed app
 
 from feed.models import Post
-from .forms import RegisterForm, UserUpdateForm, ProfileUpdateForm
+from .forms import RegisterForm, UserUpdateForm, ProfileUpdateForm, GenresChoiceForm
 from django.contrib.auth import get_user_model
 from django.conf import settings
 from django.http import HttpResponseRedirect
@@ -72,6 +72,8 @@ def logout_view(request):
 		return render(request, 'accounts/logout.html')
 
 
+def new_genre(request):
+	return render(request, 'accounts/new_genres.html')
 
 def homepage_view(request):
 
@@ -115,7 +117,9 @@ def homepage_view(request):
 	for r_req in rec_friend_requests:
 		for item in location_suggest:
 			if r_req.from_user == item.user:
-				location_suggest = location_suggest.exclude(user = r_req.from_user)
+				location_suggest = location_suggest.exclude(user = r_req.from_user) 
+
+	location_suggest = location_suggest.reverse() [:4]
 				
 
 
@@ -151,7 +155,7 @@ def homepage_view(request):
 				not_friend_neither_location = not_friend_neither_location.exclude(user = r_req.from_user)
 				#print(not_friend_neither_location)
 
-
+	not_friend_neither_location = not_friend_neither_location.reverse() [:4]
 	#print("111111111111111111111111111", not_friend_neither_location)
 
 	#print(type(not_friend_neither_location))
@@ -194,7 +198,10 @@ def homepage_view(request):
 	
 	
 
+	# suggested reads
 
+	sugg_books = Book.objects.all().order_by('-score') [:8]
+	#print(sugg_books)
 
 	context = {
 			
@@ -203,14 +210,19 @@ def homepage_view(request):
 			'total_notifications' : total_notifications,
 			'location_suggest' : location_suggest,
 			'not_friend_neither_location' : not_friend_neither_location,
-			'posts' : posts
+			'posts' : posts,
+			'sugg_books': sugg_books,
 
 	}
+
+	print(location_suggest)
 
 	return render(request, 'accounts/test_homepage.html', context)
 
 
-
+@login_required
+def read_list(request):
+	pass
 
 	
 # CHANGED ON 11/03

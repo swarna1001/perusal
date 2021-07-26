@@ -94,10 +94,11 @@
   flex-wrap: wrap; // make sure it wraps
   /*border-right: 1px solid rgba(0, 0, 0, 0.1);*/
 }
+
 .tabs label {
   order: 1; // Put the labels first
   display: block;
-  padding: 1rem 2rem;
+  padding: 0.5rem 1rem;
   margin-right: 0.2rem;
   cursor: pointer;
   background: #D0F0C0;

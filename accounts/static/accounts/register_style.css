@@ -9,13 +9,11 @@
 
 body{
   background: #f0fff0;
-  background: url(images/per_back6.jpg) no-repeat; 
-  background-size: cover;
 }
 
 .signup-form{
   border-radius: 15px;
-  padding: 40px 30px;
+  padding: 30px 30px;
   background: #e6e6fa;
 }
 
