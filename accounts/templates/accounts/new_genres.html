@@ -1,0 +1,91 @@
+{% extends "accounts/base.html" %}
+
+{% load static %}
+
+{% block cssfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static 'accounts/test_homepage_style.css' %}"/>
+{% endblock cssfiles %}
+
+{% block content %}
+
+    <div class="col-xs-12 col-sm-12 col-md-12 my-col top-col my-col-11 ">
+
+		<div class="genre-tab" style="padding-top:70px; padding-bottom:50px;">
+
+			
+
+			<div>
+
+				<div>
+					{% if message %}
+                        <div style="color: #0aad09;">
+                            {{ message }}
+                        </div>
+                    {% endif %}
+
+
+				</div>
+
+
+				{% for gen in all_genres %}
+
+					<div class="card-gen">
+  						<div class="card-body text-center">
+    						<!--<p class="card-text">{{ gen }}</p> -->
+    						<a href="add-genre/{{ gen.id }}/" class="stretched-link genres-link text-center">{{ gen }}</a>
+  						</div>
+					</div>
+				{% endfor %}
+				
+			</div>
+
+    		
+		</div>
+
+    <style>
+
+		.card-gen{
+			display: inline-flex;
+			border: 1px solid rgba(0,0,0,.125); 
+			margin-left: 5rem;
+    		margin-top: 3rem;
+			width: 10rem;
+			height: 5rem;
+			
+		}
+
+		  .card-gen:hover {
+			  border: 1px solid rgba(0,0,0,.125);
+			  background: #AC3B61;
+			  font-color: #fff;
+		}
+
+		.card-body{
+			padding: 0.75rem;
+		}
+
+		.genres-link{
+			text-decoration: none;
+		}
+
+		.genres-link:hover{
+			text-decoration: none;
+		}
+
+		a {
+    		color: #123C69;
+		}
+
+		a:hover{
+			color: #fff;
+		}
+	</style>       	
+
+
+    </div>
+  
+	
+
+
+
+{% endblock content %}

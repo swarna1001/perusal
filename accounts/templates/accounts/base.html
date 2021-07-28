@@ -30,22 +30,6 @@
 
     {% endblock cssfiles %}
 
-    <style>
-        .my-container{
-            /*margin-left: 230px;*/
-            border: 1px solid green; 
-           /* max-width: 1280px; 
-        }
-  
-        .my-col{
-            border: 1px solid blue;
-        }
-        
-         .my-row{
-            border: 1px solid red;
-         } */ 
-
-        </style>
 
     {% block javascript_block %}
 
@@ -177,10 +161,6 @@
                             <span class="badge badge-pill badge-success">{{rec_friend_requests.count}}</span>
  
 
-
-
-
-
                         </button>
                         </form>
                         
@@ -211,7 +191,7 @@
                     <div class="sidebar-menu">
                         <center class="profile">
                             <img src="{{ user.profile.image.url }}" alt="">
-                            <a href="{% url 'accounts:my_profile' %}" class="menu-btn"><p> 
+                            <a href="{% url 'accounts:my_profile' %}" class="menu-btn"><p style="color: #123C69"> 
                             {{ user.username }} </p></a>
 
                             <hr class="solid">
@@ -219,42 +199,42 @@
 
                         <li class="item">
                             <a href="{% url 'accounts:edit_profile' %}"  class="edit-menu-btn">
-                            <i class="fas fa fa-user"></i><span> Edit Profile</span></a>
+                            <i class="fas fa fa-user"></i><span style="color: #EEE2DC"> Edit Profile</span></a>
                         </li>
                         <center> <hr class="solid"> </center>
 
 
                         <li class="item">
                             <a href="{% url 'accounts:homepage' %}" class="menu-btn">
-                            <i class="fas fa fa-home fa-fw"></i><span>Home</span>
+                            <i class="fas fa fa-home fa-fw"></i><span style="color: #123C69">Home</span>
                             </a>
                         </li>
 
                         <li class="item">
                             <a href="{% url 'accounts:genres' %}"  class="menu-btn">
-                            <i class="fa fa-sticky-note fa-fw"></i><span>Genres</span></a>
+                            <i class="fa fa-sticky-note fa-fw"></i><span style="color: #123C69">Genres</span></a>
                         </li>
 
                         <li class="item">
-                            <a href="#profile" class="menu-btn read-menu ">
-                            <i class="fas fa fa-book fa-fw"></i><span>Read List</span></a>
+                            <a href="{% url 'accounts:read_list' %}" class="menu-btn read-menu ">
+                            <i class="fas fa fa-book fa-fw"></i><span style="color: #123C69">Read List</span></a>
                         </li>
 
                         <li class="item">
                             <a href="{% url 'accounts:friend_list' %}" class=" friend-menu menu-btn">
-                            <i class="fas fa fa-users fa-fw"></i><span> Friends</span> </a>
+                            <i class="fas fa fa-users fa-fw"></i><span style="color: #123C69"> Friends</span> </a>
                         </li>
 
                         <li class="item">
                         <a href="{% url 'feed:user-posts' user.username %}" class="menu-btn">
-                            <i class="fas fa-newspaper fa-fw"></i><span>Posts</span></a>
+                            <i class="fas fa-newspaper fa-fw"></i><span style="color: #123C69">Posts</span></a>
                         </li>
 
                         <div>
                             <center> <hr class="solid"> </center>
                             <li class="item" id="settings">
                                 <a href="{% url 'feed:post-home' %}" class="menu-btn">
-                                <i class="fas fa-cog fa-fw"></i><span>Settings</span> </a>
+                                <i class="fas fa-cog fa-fw"></i><span style="color: #123C69">Settings</span> </a>
                             </li>
                         </div>
                         

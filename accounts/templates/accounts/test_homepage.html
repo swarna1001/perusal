@@ -18,26 +18,25 @@
                     <div class="col-md-12 col-sm-8 my-col my-col-31">
                        
                         <div class="tabs">
-                            <input type="radio" name="tabs" id="tabone" >
+                            <input type="radio" name="tabs" id="tabone" checked="checked">
                             <label for="tabone" id="tab-heading-1">Top-Reads</label>
                             <div class="tab">
                                 <div class="top-reads">
+
+                                {% for book in sugg_books %}
                                     <div class="card side-card">
-                                        <p>Read - 1</p>
+                                    <a href="/accounts/add-book/{{ book.id }}/"> 
+                                        <img class="card-img-top" src="{{ book.cover_img.url }}" width="78" height="125" />  
+                                    </a>
+
                                     </div>
-                                    <div class="card side-card">
-                                        <p>Read - 2</p>
-                                    </div>
-                                    <div class="card side-card">
-                                        <p>Read - 3</p>
-                                    </div>
-                                    <div class="card side-card">
-                                        <p>Read - 4</p>
-                                    </div>
+
+                                {% endfor %}
+
                                 </div>
                             </div>
   
-                            <input type="radio" name="tabs" id="tabtwo" checked="checked">
+                            <input type="radio" name="tabs" id="tabtwo" >
                             <label for="tabtwo" id="tab-heading-2">Suggested</label>
                             <div class="tab">
                                 <div class="suggested ">                                    
@@ -101,6 +100,7 @@
                                     <img src="{{ post.url }}" alt="">
                                     <br /><small class="text-muted"
                                     >{{ post.date_posted }}</small>
+
 
                             <!--        {% if post.tags %}
                                             <br />

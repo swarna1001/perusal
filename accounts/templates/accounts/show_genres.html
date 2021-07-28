@@ -1,0 +1,68 @@
+{% extends "accounts/base.html" %}
+
+{% load static %}
+
+{% block cssfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static 'accounts/test_homepage_style.css' %}"/>
+{% endblock cssfiles %}
+
+{% block content %}
+
+    <div class="col-xs-12 col-sm-12 col-md-12 my-col top-col my-col-11 ">
+
+		<div class="genre-tab" style="padding-top:70px; padding-bottom:50px;">
+
+			{% if user_genres %}
+				<h5 class="text-center" style="padding-top:40px; padding-left:20px;"> your preferred genres </h5>
+
+				{% for gen in user_genres %}
+					<div class="card-gen">
+  						<div class="card-body text-center">
+    						<!--<p class="card-text">{{ gen }}</p> -->
+    						<a href="remove-genre/{{ gen.id }}/" class="stretched-link genres-link text-center">{{ gen }}</a>
+  						</div>
+					</div>
+				{% endfor %}
+
+			{% endif %}
+
+			<div class="update-button">
+
+				<a href="{% url 'accounts:edit_genres' %}" class="btn btn-danger btn-lg btn-sm">Update</a>
+
+			</div>
+
+        </div>
+
+    <style>
+
+		.card-gen{
+			display: inline-flex;
+			border: 1px solid rgba(0,0,0,.125); 
+			margin-left: 5rem;
+    		margin-top: 3rem;
+			width: 10rem;
+			height: 5rem;
+			
+		}
+
+		.card-gen:hover {
+			border: 1px solid rgba(0,0,0,.125);
+			background: red;
+		}
+
+		.card-body{
+			padding: 0.75rem;
+		}
+
+		.genres-link{
+			text-decoration: none;
+		}
+
+		.genres-link:hover{
+			text-decoration: none;
+
+		}
+	</style>       	
+
+{% endblock content %}

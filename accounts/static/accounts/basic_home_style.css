@@ -7,12 +7,6 @@
   
 }
 
-body{
-  background: url(images/per_back6.jpg) no-repeat; 
-  background-size: cover;
-}
-
-
 .my-col-11{
   padding-top: 3rem;
 }
@@ -25,14 +19,14 @@ h1.headertest {
   font-weight: bold;
   /*color: #fff;*/
   color: rgb(0, 0, 102);
-  font-family: "Lucida Handwriting", "Georgia";
+  font-family: "Baloo Chettan", "Georgia";
 }
 
 h3.headertestdata {
   color: #13274F;
   text-align: center;
   padding-bottom: 30px;
-  font-family: "Georgia", "Lucida Handwriting";
+  font-family:  "Baloo Chettan", "Georgia",;
 }
 
 .my-row-5{

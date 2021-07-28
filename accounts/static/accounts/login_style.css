@@ -5,17 +5,9 @@
   box-sizing: border-box;
   
 }
-
-
-body{
-  background: #f0fff0;
-  background: url(images/per_back6.jpg) no-repeat; 
-  background-size: cover;
-}
-
 .login-form{
   border-radius: 15px;
-  padding: 40px 30px;
+  padding: 30px 30px;
   background: #e6e6fa;
 }
 
@@ -30,7 +22,11 @@ body{
 }
 
 .my-col{
-	padding-top: 6rem;
+	padding-top: 5rem;
+}
+
+ul{
+  padding-left: 0px;
 }
 
 

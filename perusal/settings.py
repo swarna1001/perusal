@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'feed',
     'crispy_forms',
     'foundation_filefield_widget',
+    'django_select2',
 ]
 
 MIDDLEWARE = [
