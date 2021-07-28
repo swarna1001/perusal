@@ -30,13 +30,17 @@ class ProfileUpdateForm(forms.ModelForm):
 		fields = ['image', "city", "state", "bio"]
 
 
-class GenresChoiceForm(forms.ModelForm):
+"""class GenresChoiceForm(forms.ModelForm):
 
 	genre_1 = forms.ModelChoiceField(queryset=BookCategory.objects.all())
 	genre_2 = forms.ModelChoiceField(queryset=BookCategory.objects.all())
 	genre_3 = forms.ModelChoiceField(queryset=BookCategory.objects.all())
 	genre_4 = forms.ModelChoiceField(queryset=BookCategory.objects.all())
 	genre_5 = forms.ModelChoiceField(queryset=BookCategory.objects.all())
+
+	class Meta:
+		model = Profile
+		fields = ['genre_1', "genre_2", "genre_3", "genre_4", 'genre_5']"""
 
 
 

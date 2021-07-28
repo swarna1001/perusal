@@ -5,14 +5,6 @@
   box-sizing: border-box;
   
 }
-
-
-body{
-  background: #f0fff0;
-  /*background: url(images/per_back6.jpg) no-repeat; */
-  background-size: cover;
-}
-
 .login-form{
   border-radius: 15px;
   padding: 30px 30px;

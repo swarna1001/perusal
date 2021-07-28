@@ -1,0 +1,63 @@
+{% extends "accounts/base.html" %}
+
+{% load static %}
+
+{% block cssfiles %}
+
+{% endblock cssfiles %}
+
+{% block content %}
+
+    <div class="col-xs-12 col-sm-12 col-md-12 my-col top-col my-col-11 ">
+
+		<div class="genre-tab" style="padding-top:70px; padding-bottom:50px;">
+
+            {% for read in read_list %}
+
+                {{read}}
+
+
+
+            {% endfor %}
+
+			
+			<div class="update-button">
+
+				<a href="{% url 'accounts:update_read_list' %}" class="btn btn-danger btn-lg btn-sm">Update</a>
+
+			</div>
+
+        </div>
+
+    <style>
+
+		.card-gen{
+			display: inline-flex;
+			border: 1px solid rgba(0,0,0,.125); 
+			margin-left: 5rem;
+    		margin-top: 3rem;
+			width: 10rem;
+			height: 5rem;
+			
+		}
+
+		.card-gen:hover {
+			border: 1px solid rgba(0,0,0,.125);
+			background: red;
+		}
+
+		.card-body{
+			padding: 0.75rem;
+		}
+
+		.genres-link{
+			text-decoration: none;
+		}
+
+		.genres-link:hover{
+			text-decoration: none;
+
+		}
+	</style>       	
+
+{% endblock content %}

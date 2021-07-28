@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
-
 from autoslug import AutoSlugField
 from django.urls import reverse
 from django.utils import timezone
@@ -18,8 +17,7 @@ class Profile(models.Model):
 	state = models.CharField(max_length=30, blank=True)
 	slug = AutoSlugField(populate_from='user')
 	bio = models.CharField(max_length=255, blank=True)
-	friends = models.ManyToManyField("Profile", blank=True)
-	genres = models.CharField(max_length=1000, blank=True)
+	friends = models.ManyToManyField("Profile", blank=True)	
 
 
 	def __str__(self):
@@ -82,4 +80,19 @@ class Book(models.Model):
 		return self.category
 	
 
+class UserReadList(models.Model):
+	user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='get_all_user_books')
+	book = models.ForeignKey(Book, on_delete=models.CASCADE)
 
+	def __str__(self):
+		return "{}".format(self.book)
+
+
+class UserGenres(models.Model):
+	user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='get_all_user_genres')
+	genre = models.ForeignKey(BookCategory, on_delete=models.CASCADE)
+
+	def __str__(self):
+		return "{}".format(self.genre)
+
+		

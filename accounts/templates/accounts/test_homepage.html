@@ -25,7 +25,10 @@
 
                                 {% for book in sugg_books %}
                                     <div class="card side-card">
-                                    <img class="card-img-top" src="{{ book.cover_img.url }}" width="78" height="125" />
+                                    <a href="/accounts/add-book/{{ book.id }}/"> 
+                                        <img class="card-img-top" src="{{ book.cover_img.url }}" width="78" height="125" />  
+                                    </a>
+
                                     </div>
 
                                 {% endfor %}

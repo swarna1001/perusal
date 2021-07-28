@@ -12,35 +12,27 @@
 
 		<div class="genre-tab" style="padding-top:70px; padding-bottom:50px;">
 
-			
+			{% if user_genres %}
+				<h5 class="text-center" style="padding-top:40px; padding-left:20px;"> your preferred genres </h5>
 
-			<div>
-
-				<div>
-					{% if message %}
-                        <div style="color: #0aad09;">
-                            {{ message }}
-                        </div>
-                    {% endif %}
-
-
-				</div>
-
-
-				{% for gen in all_genres %}
-
+				{% for gen in user_genres %}
 					<div class="card-gen">
   						<div class="card-body text-center">
     						<!--<p class="card-text">{{ gen }}</p> -->
-    						<a href="add-genre/{{ gen.id }}/" class="stretched-link genres-link text-center">{{ gen }}</a>
+    						<a href="remove-genre/{{ gen.id }}/" class="stretched-link genres-link text-center">{{ gen }}</a>
   						</div>
 					</div>
 				{% endfor %}
-				
+
+			{% endif %}
+
+			<div class="update-button">
+
+				<a href="{% url 'accounts:edit_genres' %}" class="btn btn-danger btn-lg btn-sm">Update</a>
+
 			</div>
 
-    		
-		</div>
+        </div>
 
     <style>
 
@@ -54,10 +46,9 @@
 			
 		}
 
-		  .card-gen:hover {
-			  border: 1px solid rgba(0,0,0,.125);
-			  background: #AC3B61;
-			  font-color: #fff;
+		.card-gen:hover {
+			border: 1px solid rgba(0,0,0,.125);
+			background: red;
 		}
 
 		.card-body{
@@ -70,22 +61,8 @@
 
 		.genres-link:hover{
 			text-decoration: none;
-		}
 
-		a {
-    		color: #123C69;
-		}
-
-		a:hover{
-			color: #fff;
 		}
 	</style>       	
-
-
-    </div>
-  
-	
-
-
 
 {% endblock content %}

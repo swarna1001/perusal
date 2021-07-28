@@ -2,26 +2,18 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import RegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout
-
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-
-from .models import Profile, FriendRequest, BookCategory, Book
-
-# add Post model to the feed app
-
+from .models import Profile, FriendRequest, BookCategory, Book, UserGenres, UserReadList
 from feed.models import Post
-from .forms import RegisterForm, UserUpdateForm, ProfileUpdateForm, GenresChoiceForm
+from .forms import RegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth import get_user_model
 from django.conf import settings
 from django.http import HttpResponseRedirect
 import random
-
 from django.db.models import Q
 
 User = get_user_model()
-
-# Generic view
 
 def signup_view(request):
 	if request.method == "POST":
@@ -72,8 +64,107 @@ def logout_view(request):
 		return render(request, 'accounts/logout.html')
 
 
-def new_genre(request):
-	return render(request, 'accounts/new_genres.html')
+def edit_genre(request):
+
+	user = User.objects.get(id=request.user.id)
+	user_genres = UserGenres.objects.filter(user=user)
+	all_genres = BookCategory.objects.all()
+
+	for i in all_genres:
+		for j in user_genres:
+			if str(i) == str(j):
+				all_genres = all_genres.exclude(category_name=j)
+
+	context = {		
+			'user_genres': user_genres,
+			'all_genres': all_genres,			
+	}
+
+	return render(request, 'accounts/new_genres.html', context)
+
+
+def add_genres(request, id):
+
+	user = User.objects.get(id=request.user.id)
+	get_genre = get_object_or_404(BookCategory, id = id)
+	add_genre = UserGenres.objects.get_or_create(
+						user = user,
+						genre = get_genre)
+
+	context = {		
+		'message': 'Your Read List has been successfully updated!'
+	}
+
+	return redirect('accounts:edit_genres')
+
+
+def remove_genres(request, id):
+
+	#user = User.objects.get(id=request.user.id)
+	#get_genre = get_object_or_404(BookCategory, id = id)
+	delete_genre = UserGenres.objects.filter(
+						id=id).first()
+
+	print(delete_genre)
+	print(type(delete_genre))
+
+	delete_genre.delete()
+
+	return redirect('accounts:genres')
+
+def show_genres(request):
+	user = User.objects.get(id=request.user.id)
+	user_genres = UserGenres.objects.filter(user=user)
+	context = {		
+			'user_genres': user_genres,
+		}
+	return render(request, 'accounts/show_genres.html', context)
+
+
+def show_read_list(request):
+	user = User.objects.get(id=request.user.id)
+	user_genres = UserGenres.objects.filter(user=user)
+	read_list = UserReadList.objects.filter(user=user)
+	print(read_list)
+	context = {		
+			'read_list': read_list,
+		}
+	return render(request, 'accounts/show_read_list.html', context)
+
+
+def update_read_list(request):
+
+	if 'q' in request.GET:
+		q = request.GET['q']
+
+		if (q == ""):
+			not_valid = 'Invalid search!'
+			return render(request, 'accounts/update_read_list.html', {'not_valid' : not_valid, })
+
+		else:
+			books = Book.objects.filter(name__icontains=q)
+
+			if len(books) == 0:
+				not_found = 'No matching object found!'
+
+				return render(request, 'accounts/update_read_list.html', {'not_found' : not_found, })
+			
+			return render(request, 'accounts/update_read_list.html', {'books' : books, })
+			
+	return render(request, 'accounts/update_read_list.html')
+
+
+def add_book_from_homepage(request, id):
+	user = User.objects.get(id=request.user.id)
+	print(user)
+	get_book = get_object_or_404(Book, id = id)
+	print(get_book)
+	add_book = UserReadList.objects.get_or_create(
+						user = user,
+						book = get_book)
+
+	return redirect('accounts:homepage')
+
 
 def homepage_view(request):
 
@@ -90,7 +181,7 @@ def homepage_view(request):
 	# same read_list - 2
 
 	# FILTER : 1 (USER LOCATION, NOT IN SENT OR RECEIVED REQUESTS, NOT IN FRIENDS)
-
+	user = User.objects.get(id=request.user.id)
 	user_loc = request.user.profile.city
 
 	sent_friend_requests = FriendRequest.objects.filter(from_user = request.user)
@@ -176,12 +267,12 @@ def homepage_view(request):
 
 
 	# user genres
-	current_user_genres = request.user.profile.genres
+	#current_user_genres = request.user.profile.genres
 
 	# user genres list form
-	current_user_genres_list = list(current_user_genres.split("  "))
+	#current_user_genres_list = list(current_user_genres.split("  "))
 	# sorted genres list
-	sorted_genre_list = sorted(current_user_genres_list)
+	#sorted_genre_list = sorted(current_user_genres_list)
 
 	"""length_sorted_genre = len(sorted_genre_list)
 
@@ -200,7 +291,15 @@ def homepage_view(request):
 
 	# suggested reads
 
-	sugg_books = Book.objects.all().order_by('-score') [:8]
+	sugg_books = Book.objects.all().order_by('-score')
+	read_list = UserReadList.objects.filter(user=user)
+
+	for i in sugg_books:
+		for j in read_list:
+			if str(i) == str(j):
+				sugg_books = sugg_books.exclude(name=j)
+
+	sugg_books = sugg_books [:8]
 	#print(sugg_books)
 
 	context = {
@@ -687,7 +786,6 @@ def profile_view(request, slug):
 
 	# get genres to be displayed in the view
 	current_user = p.user
-	existing_genres = current_user.profile.genres
 	
 	context = {
 		'u': u,
@@ -696,7 +794,6 @@ def profile_view(request, slug):
 		'friends_list': friends,
 		'sent_friend_requests': sent_friend_requests,
 		'rec_friend_requests': rec_friend_requests,
-		'existing_genres' : existing_genres,
 		'post_count': user_posts.count
 	}
 
@@ -999,10 +1096,6 @@ def notification_view(request):
 			'rec_friend_requests': rec_friend_requests,
 
 	}
-
-
-
-
 
 
 	return render(request, "accounts/notifications.html", context)
