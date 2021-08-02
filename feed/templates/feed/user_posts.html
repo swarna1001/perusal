@@ -10,7 +10,6 @@
 {% endblock cssfiles %}
 
 
-    
     <!-- ############## till here COMMON TEMPLATE FOR ALL THE PAGES  ################# -->
 
 
@@ -23,8 +22,9 @@
                 
 
                 <div class="row my-row top-row">
-                    <div class="col-md-8">
-                        <h2> My Posts</h2>
+                    <div class="col-md-12">
+                        <h4 class="text-class text-center"> My Posts</h4>
+                    {% if posts %}
                         {% for post in posts %}
                             <div class="card card-signin my-5">
                                 <div class="card-body">
@@ -59,7 +59,28 @@
                                         </div>
                             </div>
                         {% endfor %}
+                    
+                    {% else %}
+                    <h6 class="text-class mt-5 d-flex justify-content-center"> There is nothing here, yet! </h6>
+                    <h6 class="text-class mt-4 d-flex justify-content-center"> Just click button below, and start sharing your thoughts and current adventures! </h6>
+                    {% endif %}
                     </div>
+
+                    
+                </div>
+
+                <div class="row">
+
+                <div class="col-md-12 mt-5 d-flex justify-content-center" id="mybutton">
+                        
+                        <form action="{% url 'feed:post-create' %}" method="post">
+                            {% csrf_token %}
+                            <button class="btn btn-danger btn-md custom-btn my-2 my-sm-0 feedback fixed " type="submit"> <i class="fas fa-plus-circle "></i>Add Post
+                            </button>
+                        </form>
+
+                        </div>
+                </div
                 </div>
 
 

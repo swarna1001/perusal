@@ -12,18 +12,49 @@
 
 		<div class="genre-tab" style="padding-top:70px; padding-bottom:50px;">
 
+		{% if read_list %}
+			<h5 class="text-center text-class" style="margin-top: 20px;"> Your Reading List </h5>
             {% for read in read_list %}
 
-                {{read}}
+                <div class="card-gen">
+  					<div class="card-body">
+    					<a href="/accounts/read-list/remove-book/{{ read.id }}/" class="stretched-link genres-link text-center text-class" style="color: black;">{{ read }}</a>
+  					</div>
+				</div>
+            {% endfor %} 
 
+			<div class="row">
+        		<div class="col-md-12 mt-5 d-flex justify-content-center">
+            		{% if messages %}
+                		{% for message in messages %}
+                    		<div class="alert alert-{{ message.tags }}">
+                        		{{ message }}
+                    		</div>
+                		{% endfor %}
+            		{% endif %}       
+        		</div>
+    		</div>
 
+		{% else %}
 
-            {% endfor %}
+		<h5 class="text-center text-class mt-5"> You have not added any books in your Reading List, yet! </h5>
+
+		<h6 class="text-center text-class"> Click on the update button to start adding books!</h6>
+
+		{% endif %}
+
+			<div class="d-flex justify-content-center">
+				{% if updated_readlist %}
+                    <div class="text-class" style="color: #0aad09;">
+                        {{ updated_readlist }}
+                    </div>
+                {% endif %}
+			</div>
 
 			
-			<div class="update-button">
+			<div class="d-flex justify-content-center update-button mt-5">
 
-				<a href="{% url 'accounts:update_read_list' %}" class="btn btn-danger btn-lg btn-sm">Update</a>
+				<a href="{% url 'accounts:update_read_list' %}" class="btn btn-danger btn-md custom-btn">Update</a>
 
 			</div>
 
@@ -32,22 +63,22 @@
     <style>
 
 		.card-gen{
-			display: inline-flex;
-			border: 1px solid rgba(0,0,0,.125); 
-			margin-left: 5rem;
-    		margin-top: 3rem;
-			width: 10rem;
-			height: 5rem;
+			border: 1px solid rgba(0,0,0,.125);
+    		margin-left: 4rem;
+    		margin-top: 2rem;
+    		width: 40%;
+    		height: fit-content;
+    		display: inline-flex;
 			
 		}
 
 		.card-gen:hover {
-			border: 1px solid rgba(0,0,0,.125);
-			background: red;
+			border: 1px solid #F0E4D8;
+			background: #F0E4D8;
 		}
 
 		.card-body{
-			padding: 0.75rem;
+			padding: 0.5rem;
 		}
 
 		.genres-link{
@@ -57,6 +88,10 @@
 		.genres-link:hover{
 			text-decoration: none;
 
+		}
+
+		.custom-btn{
+  			background: #cf6060;
 		}
 	</style>       	
 

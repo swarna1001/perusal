@@ -1,21 +1,22 @@
 /*Tabs*/
 .tabs {
   display: flex;
-  flex-wrap: wrap; // make sure it wraps
-  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap; 
+  /*border: 1px solid rgba(0, 0, 0, 0.1);*/
 }
 .tabs label {
-  order: 1; // Put the labels first
+  order: 1; 
   display: block;
   padding: 1rem 2rem;
   margin-right: 0.2rem;
   cursor: pointer;
-  background: #D0F0C0;
+  background: #F0E4D8;
   font-weight: bold;
   transition: background ease 0.2s;
+  font-size: 20px;
 }
 .tabs .tab {
-  order: 99; // Put the tabs last
+  order: 99; 
   flex-grow: 1;
   width: 100%;
   display: none;
@@ -49,12 +50,11 @@
 /* NEW CHANGES */
 
 .tabs{
-  margin-top: 60px;
-  box-shadow: 1px 1px 3px rgba(0,0,0,0.9);
+  margin-top: 50px;
 }
 
-#tab-heading-2"{
-  color: #fff;
+#tab-heading-2{
+  color: black;
 }
 
 
@@ -74,9 +74,8 @@
   margin-top: 20px;
   margin-right: 10px;
   background: white;
-  box-shadow: 0px 0px 0px rgba(0,0,0,0.9);
   text-align: center;
-  font-family: "fantasy", sans-serif;
+  font-family: 'Baloo Chettan 2', cursive; 
 }
 
 .side-card-2 {
@@ -88,9 +87,9 @@
   margin-top: 100px;
   margin-right: 10px;
   background: white;
-  box-shadow: 0px 0px 0px rgba(0,0,0,0.9);
+  
   text-align: center;
-  font-family: "fantasy", sans-serif;
+  font-family: 'Baloo Chettan 2', cursive; 
 }
 
 .friend-image{
