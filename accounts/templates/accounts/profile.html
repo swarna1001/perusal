@@ -35,18 +35,18 @@
                             <div class="row my-row">
                                 <div class="col-8 my-col"> </div>
 
-                                <div class="col-4 my-col text-center">
+                                <div class="col-4 my-col text-center text-class">
                                     <div class="posts-col">
-                                        <h3>{{post_count}}</h3>
-                                        <h3>Posts</h3>                   
+                                        <h4>{{post_count}}</h4>
+                                        <h4 class="text-class">Posts</h4>                   
                                     </div>                   
                                 </div>
                             </div>
                 
                             <div class="row my-row">
                                 <div class="media-body">
-                                    <h2 class="user-name">{{ u.username }} </h2>
-                                    <h4 class="user-location"> {{ u.profile.city }},  {{ u.profile.state }}  </h4>
+                                    <h3 class="user-name text-class">{{ u.username }} </h3>
+                                    <h4 class="user-location text-class"> {{ u.profile.city }},  {{ u.profile.state }}  </h4>
                                 </div>
                             </div>
                         </div> 
@@ -55,8 +55,8 @@
 
                     <div class="col-2 my-col my-col-32 text-center">
                         <div class="friends-col">
-                            <h3>{{ u.profile.friends.count}}</h3>
-                            <h3>Friends</h3>                    
+                            <h4 class="text-class">{{ u.profile.friends.count}}</h4>
+                            <h4 class="text-class">Friends</h4>                    
                         </div>
 
 
@@ -66,20 +66,20 @@
 
                             {% if button_status == 'not_friend' %}
                                 <small>
-                                    <a class="btn btn-primary btn-lg btn-block profile-btn " href="/accounts/friend-request/send/{{ u.id }}/" > Request </a>
+                                    <a class="btn btn-danger btn-md custom-btn profile-btn" href="/accounts/friend-request/send/{{ u.id }}/" > Request </a>
                                 </small>
 
                             {% elif button_status == 'friend_request_sent' %}
-                                <small> <a class="btn btn-warning btn-lg btn-block profile-btn" href="/accounts/friend-request/cancel/{{ u.id }}/" > Cancel </a></small>
+                                <small> <a class="btn btn-danger btn-md custom-btn profile-btn" href="/accounts/friend-request/cancel/{{ u.id }}/" > Cancel </a></small>
 
                             {% elif button_status == 'friend_request_received' %}
-                                <small> <a class="btn btn-success mr-4 profile-btn" href="/accounts/friend-request/accept/{{ u.id }}/" > Accept </a></small>
+                                <small> <a class="btn btn-danger btn-md custom-btn mr-4 profile-btn" href="/accounts/friend-request/accept/{{ u.id }}/" > Accept </a></small>
                                 
-                                <small> <a class="btn btn-danger profile-btn" href="/accounts/friend-request/delete/{{ u.id }}/" > Delete </a></small>
+                                <small> <a class="btn btn-danger btn-md custom-btn profile-btn" href="/accounts/friend-request/delete/{{ u.id }}/" > Delete </a></small>
                     
                             {% else %}
                             
-                                <small> <a class="btn btn-danger" href="/accounts/friend/delete/{{ u.id }}/"> UnFriend </a>
+                                <small> <a class="btn btn-danger btn-md custom-btn" href="/accounts/friend/delete/{{ u.id }}/"> UnFriend </a>
                                 </small>
                                 
                             {% endif %}
@@ -105,7 +105,7 @@
                 <div class="row justify-content-center my-row">       
                     <div class="col-10 my-col my-col-41">
                         <div class="user-bio">
-                            <h4>{{ u.profile.bio }}</h4>
+                            <h4 class="text-class">{{ u.profile.bio }}</h4>
                         </div> 
                     </div>  
                 </div>
@@ -116,49 +116,50 @@
                 <!-- ADD WHEN READ_LIST IS ADDED -->
                 <div class="row justify-content-center genres-row my-row">     
                     <div class="col-5 my-col my-col-61">
-                        <div class="accordion text-center" id="accordionExample">
-                            <div class="card">
-                                <div class="card-header" id="headingOne">
-                                    <h2>
-                                        <button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#collapseOne">Genres
-                                        </button>                                  
-                                    </h2>
-                                </div>
-                                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                    <div class="card-body">
-                                        <div>
+                        <h4 class="text-class prof-head"> Genres </h4>  
 
-                                            {% if existing_genres %}
-                                                <h2>Already selected GENRES:</h2>
-                                                {{ existing_genres }}
+                        <div class="mt-4"> 
 
-                                            {% else %}
-                                                <h3> Genres not specified </h3>
+                            {% if user_genres %}
+                                {% for gen in user_genres %}
+                                    <h6 class="text-class"> {{gen}} </h6>
+                                {% endfor %}
 
-                                            {% endif %}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>    
-                        </div>
+                            {% else %}
+                                <h6 class="text-class"> No favourite genres! </h6>
+
+                            {% endif %} 
+                        </div> 
                     </div>
+
+                    <style>
+                        .prof-head{
+			                border: 1px solid #F6F5F0;	
+                            background: #F6F5F0;
+                            padding: 1rem;
+		                }
+
+
+                    </style>
 
 
                     <div class="col-5 my-col my-col-62">
-                        <div class="accordion text-center" id="accordionExample">
-                            <div class="card">
-                                <div class="card-header" id="headingOne">
-                                <h2>
-                                    <button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#collapseTwo">Read List</button>                                  
-                                </h2>
-                            </div>
-                                <div id="collapseTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                    <div class="card-body">
-                                        <p>User's read list</p>
-                                    </div>
-                                </div>
-                            </div>    
+                        <h4 class="text-class prof-head"> Read List </h4>
+
+                        <div class="mt-4"> 
+
+                            {% if user_read_list %}
+                                {% for reads in user_read_list %}
+                                    <h6 class="text-class"> {{reads}} </h6>
+                                {% endfor %}
+
+                            {% else %}
+                                <h6 class="text-class"> Nothing in Read List! </h6>
+
+                            {% endif %}
                         </div>
+
+                        
                     </div>  
                 </div>
                 <hr/>
@@ -167,7 +168,7 @@
                 <div class="row justify-content-center my-row posts-row">       <!-- ROW 6  POSTS -->
                     <div class="col-10 my-col my-col-61">
                         
-                        <h1 class="text-center">Posts</h1>
+                        <h4 class="text-center text-class">Posts</h4>
 
                         {% for post in user_posts %}
                             {% if post.post_image %}
@@ -255,6 +256,15 @@
 
                     </div>  
                 </div> 
+
+    <style>
+
+        .custom-btn{
+  			background: #cf6060;
+		}
+
+
+    </style>
 
 
 {% endblock content %}

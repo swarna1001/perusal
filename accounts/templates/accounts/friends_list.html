@@ -34,11 +34,11 @@
 
 
 <div class="row justify-content-around my-row top-row">
-    <div class="col-12 my-col my-col-41 text-left">
+    <div class="col-xs-12 col-sm-10 col-md-8 my-col my-col-41 text-left">
                         
         <div class="tabs">
             <input type="radio" name="tabs" id="tabone" >
-                <label for="tabone" id="tab-heading-1">Friends</label> 
+                <label for="tabone" id="tab-heading-1" class="text-class">Friends</label> 
                 <div class="tab">
                     <div class="right-sidebar">
                         {% if friends %}                                       
@@ -47,38 +47,38 @@
                                     <div class="card side-card">
                                         <a href="{{ user_p.get_absolute_url }}"> <img src="{{ user_p.image.url }}" class="friend-image" width="80" height="80" alt=""/></a>
                                         <a class="text-dark" href="{{ user_p.get_absolute_url }}">
-                                        <b>{{ user_p }}</b></a>
+                                        <h6 class="text-class pl-1">{{ user_p }}</h6></a>
                                         <small> <a class="btn btn-danger btn-sm del-btn" href="friend/delete/{{ user_p.id }}"> Delete </a> </small>
                                     </div>
                                 {% endfor %}
                             </div>
                         {% else %}
-                            <h3> Connect to people with similar reading taste, Just send a Request! 
-                            </h3>
+                            <h6 class="text-class"> Connect to people with similar reading taste, Just send a Request! 
+                            </h6>
                         {% endif %}   
                     </div>
                 </div>
   
             
             <input type="radio" name="tabs" id="tabtwo" checked="checked">
-                <label for="tabtwo" id="tab-heading-2">Requests</label>
+                <label for="tabtwo" id="tab-heading-2" class="text-class">Requests</label>
                     <div class="tab">
 
                         <div class="row justify-content-around my-row">
                             <div class="col-md-5">
                                 <div class="card-body my-3">
-                                    <h3>Recieved ({{ rec_friend_requests.count }})</h3>
+                                    <h4 class="text-class">Recieved ({{ rec_friend_requests.count }})</h4>
                                     <hr class="my-4" />
                                         
                                     {% if not rec_friend_requests %}
-                                        <h5><i>No recieved requests!</i></h5>
+                                        <h5 class="text-class">No recieved requests!</h5>
                                     {% else %} 
                                         {% for r_request in rec_friend_requests %}
                                             <a href="{{ r_request.from_user.profile.get_absolute_url }}">
                                             <img class="suggest-image" src="{{ r_request.from_user.profile.image.url }}" class="rounded mr-4"  alt=""/></a>
                                         
-                                            <a class="mr-2 text-dark align-middle" href="{{ r_request.from_user.profile.get_absolute_url }}"><b>
-                                            {{ r_request.from_user.username }}</b> </a>
+                                            <a class="mr-2 align-middle text-class" href="{{ r_request.from_user.profile.get_absolute_url }}"><h6>
+                                            {{ r_request.from_user.username }}</h6> </a>
             
                                             <small class="float-right">
                                         
@@ -100,10 +100,10 @@
                             <div class="col-md-5">
                                 <div class="my-3">
                                     <div class="card-body">
-                                        <h3> Sent ({{ sent_friend_requests.count }})</h3>
+                                        <h4 class="text-class"> Sent ({{ sent_friend_requests.count }})</h4>
                                         <hr class="my-4" />
                                         {% if not sent_friend_requests %}
-                                        <h5><i>You have not requested anyone!</i></h5>
+                                        <h5 class="text-class"><i>You have not requested anyone!</i></h5>
                                         
                                         {% else %} 
                                             {% for s_request in sent_friend_requests %}
@@ -111,7 +111,7 @@
                                                 <a href="{{ s_request.to_user.profile.get_absolute_url }}">
                                                 <img class="suggest-image" src="{{ s_request.to_user.profile.image.url }}" class="rounded mr-2" alt=""/></a>
                                         
-                                                <a class="mr-2 align-middle text-dark" href="{{ s_request.to_user.profile.get_absolute_url }}"><b>
+                                                <a class="mr-2 align-middle text-dark text-class" href="{{ s_request.to_user.profile.get_absolute_url }}"><b>
                                                 {{ s_request.to_user.username }}</b> </a>
             
                                                 <small class="float-right">

@@ -31,12 +31,17 @@ urlpatterns = [
 
     path('edit-genres/add-genre/<int:id>/', views.add_genres, name="add_genre"),
     path('genres/remove-genre/<int:id>/', views.remove_genres, name="remove_genre"),
+    path('read-list/remove-book/<int:id>/', views.remove_books, name="remove_books"),
 
-    path('add-book/<int:id>/', views.add_book_from_homepage, name="add_book_from_homepage"),
+    path('add-book/<int:id>/', views.add_book_from_homepage, name="add_book_from_homepage"), 
+    path('add-book-from-genre/<int:id>/', views.add_book_based_on_genre, name="add_book_from_genre"),
 
 
+    path('genre/books/<int:id>/', views.show_book_by_genres, name="books_by_genre"),
 
+    path('search/', views.show_search_result, name="show_search_result"),
 
+    path('genres/add-genre/<int:id>/', views.add_top_genres, name="add_top_genres"),
 
     #path('friends/friend-request/delete/<int:id>/', views.delete_friend_request_from_friend_list, 
         #name='delete_friend_request'),

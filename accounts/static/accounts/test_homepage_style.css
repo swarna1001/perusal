@@ -101,7 +101,7 @@
   padding: 0.5rem 1rem;
   margin-right: 0.2rem;
   cursor: pointer;
-  background: #D0F0C0;
+  background: #F0E4D8;
   font-weight: bold;
   transition: background ease 0.2s;
   font-size: 20px;
@@ -141,12 +141,13 @@
 /* NEW CHANGES */
 
 .tabs{
-  margin-top: 100px;
+  margin-top: 40px;
   /*box-shadow: 1px 1px 3px rgba(0,0,0,0.9);*/
 }
 
-#tab-heading-2"{
-  color: #fff;
+#tab-heading-2{
+  color: black;
+  margin-top: 5rem;
 
 }
 
@@ -174,21 +175,17 @@ hr {
 }
 
 .image-card{
-  width: 900px;
-  height: 1200px;
-  background: white;
-  box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.1);
-  font-family: "fantasy", sans-serif;
+  
+  font-family: 'Baloo Chettan 2', cursive; 
 }
 
 
 .text-card{
   display: inline-grid;
-  width: 900px;
-  height: 300px;
-  background: white;
-  box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.1);
-  font-family: "fantasy", sans-serif;
+  width: 80%;
+  height: fit-content;
+  background: #F6F5F0;
+  font-family: 'Baloo Chettan 2', cursive; 
   font-size: 15px;
 }
 

@@ -8,7 +8,6 @@ from django.db.models.signals import post_save
 from django.conf import settings
 
 
-
 class Profile(models.Model):
 
 	user = models.OneToOneField(User, on_delete = models.CASCADE)
@@ -57,9 +56,13 @@ class BookCategory(models.Model):
 
 	category_name = models.CharField(max_length=250)
 	category_rank = models.IntegerField(unique=True)
+	score = models.IntegerField(default=0)
 
 	def __str__(self):
 		return self.category_name
+
+	def get_score(self):
+		return self.score
 
 
 class Book(models.Model):

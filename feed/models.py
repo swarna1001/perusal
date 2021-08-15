@@ -7,7 +7,7 @@ from PIL import Image
 
 class Post(models.Model):
 	text_post = models.CharField(max_length=500)
-	post_image = models.ImageField(blank=True, upload_to = 'post_images')
+	add_image = models.ImageField(blank=True, upload_to = 'post_images')
 
 	date_posted = models.DateTimeField(default=timezone.now)
 	user_name = models.ForeignKey(User, on_delete=models.CASCADE)

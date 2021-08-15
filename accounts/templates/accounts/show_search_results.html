@@ -1,0 +1,137 @@
+{% extends "accounts/base.html" %}
+
+{% load static %}
+
+{% block cssfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static 'accounts/test_homepage_style.css' %}"/>
+{% endblock cssfiles %}
+
+{% block content %}
+
+    <div class="col-xs-12 col-sm-12 col-md-12 my-col top-col my-col-11 ">
+
+		<div class="genre-tab" style="padding-top:70px; padding-bottom:50px;">
+			<div>
+
+				<div>
+					{% if not_valid %}
+                        <div style="color: #0aad09;">
+                            {{ not_valid }}
+                        </div>
+                    {% endif %}
+				</div>
+
+
+                <div>
+					{% if not_found %}
+                        <div style="color: #0aad09;">
+                            {{ not_found }}
+                        </div>
+                    {% endif %}
+				</div>
+
+
+                {% if name %}
+				    {% for i in name %}
+					    <div class="card side-card">
+                            <a href="{{ i.get_absolute_url }}"><img class="suggest-image" src="{{ i.image.url }}" alt=""/></a>
+                            <a class="text-dark" href="{{ i.get_absolute_url }}"><b> {{ i }} </b></a>
+                        </div>
+				    {% endfor %}
+                {% endif %}
+
+
+                {% if by_city %}
+				    {% for i in by_city %}
+					    <div class="card-gen">
+  						    <div class="card-body text-center">
+    						    <p class="card-text">{{ i }}</p> 
+  						    </div>
+					    </div>
+				    {% endfor %}
+                {% endif %}
+
+
+                {% if books %}
+				    {% for i in books %}
+					    <div class="card-gen">
+  						    <div class="card-body text-center">
+    						    <p class="card-text">{{ i }}</p> 
+  						    </div>
+					    </div>
+				    {% endfor %}
+                {% endif %}
+
+
+                {% if books_by_author %}
+				    {% for i in books_by_author %}
+					    <div class="card-gen">
+  						    <div class="card-body text-center">
+    						    <p class="card-text">{{ i }}</p> 
+  						    </div>
+					    </div>
+				    {% endfor %}
+                {% endif %}
+
+
+                {% if books_by_genre %}
+				    {% for i in books_by_genre %}
+					    <div class="card-gen">
+  						    <div class="card-body text-center">
+    						    <p class="card-text">{{ i }}</p> 
+  						    </div>
+					    </div>
+				    {% endfor %}
+                {% endif %}
+				
+			</div>
+
+    		
+		</div>
+
+    <style>
+
+		.card-gen{
+			display: inline-flex;
+			border: 1px solid rgba(0,0,0,.125); 
+			margin-left: 5rem;
+    		margin-top: 3rem;
+			width: 10rem;
+			height: 6rem;
+			
+		}
+
+		  .card-gen:hover {
+			  	border: 1px solid #F0E4D8;
+				background: #F0E4D8;
+		}
+
+		.card-body{
+			padding: 0.75rem;
+		}
+
+		.genres-link{
+			text-decoration: none;
+		}
+
+		.genres-link:hover{
+			text-decoration: none;
+		}
+
+		a {
+    		color: #123C69;
+		}
+
+		a:hover{
+			color: #fff;
+		}
+	</style>       	
+
+
+    </div>
+  
+	
+
+
+
+{% endblock content %}

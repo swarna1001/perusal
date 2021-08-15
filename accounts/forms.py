@@ -13,21 +13,31 @@ class RegisterForm(UserCreationForm):
 		fields = ["username", "email", "password1", "password2"]
 
 
-
 class UserUpdateForm(forms.ModelForm):
-	email = forms.EmailField()
+	username = forms.CharField(required=False)
+	email = forms.EmailField(required=False)
+
 	class Meta:
 		model = User
 		fields = ["username", "email"]
 
-class ProfileUpdateForm(forms.ModelForm):
-	city = forms.CharField()
-	state = forms.CharField()
-	bio = forms.CharField()
+class ProfileImageUpdateForm(forms.ModelForm):
+	image = forms.ImageField(required=False)
 
 	class Meta:
 		model = Profile
-		fields = ['image', "city", "state", "bio"]
+		fields = ['image']
+
+class ProfileUpdateForm(forms.ModelForm):
+	city = forms.CharField(required=False)
+	state = forms.CharField(required=False)
+	bio = forms.CharField(required=False)
+	
+
+
+	class Meta:
+		model = Profile
+		fields = ["city", "state", "bio"]
 
 
 """class GenresChoiceForm(forms.ModelForm):

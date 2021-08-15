@@ -31,7 +31,7 @@ body{
 
 .wrapper .sidebar{
   z-index: 1;
-  background: #AC3B61;
+  background: #C39E9E;
   position: fixed;
   top: 80px;
   height: 100%;
@@ -41,7 +41,7 @@ body{
 /* Modify the background color */ 
           
 .navbar-custom { 
-    background-color: #efefef; 
+    background-color: #F6F0F1; 
 } 
 /* Modify brand and text color */ 
           
@@ -121,22 +121,42 @@ hr.solid{
   padding: 3px 35px;
   transition: 0.3s;
   transition-property: color;
+  text-decoration: none;
 }
 
 .wrapper .sidebar .sidebar-menu .item .menu-btn:hover{
-  color: #d6cbd3;
+  text-decoration: none;
+  color: black;
+  
 }
 
 .wrapper .sidebar .sidebar-menu .menu-btn:hover{
-  color: #d6cbd3;
+  text-decoration: none;
+  color: black;
 }
 
 .wrapper .sidebar .sidebar-menu .item .last-menu-btn:hover{
-  color: #d6cbd3;
+  color: black;
 }
 
 .wrapper .sidebar .sidebar-menu .item .edit-menu-btn:hover{
-  color: #d6cbd3;
+  color: black;
+}
+
+.wrapper .sidebar .sidebar-menu .menu-btn .sidebar-text:hover{
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+.wrapper .sidebar .sidebar-menu .item .last-menu-btn .sidebar-text:hover{
+  color: black;
+  font-weight: bold;
+}
+
+.wrapper .sidebar .sidebar-menu .item .edit-menu-btn .sidebar-text:hover{
+  color: black;
+  font-weight: bold;
 }
 
 .wrapper .sidebar .sidebar-menu .item .menu-btn i{
@@ -158,7 +178,7 @@ hr.solid{
 
 .search
 {
-  border: 2px solid #CF5C3F;
+  border: none;
   overflow: auto;
   border-radius: 5px;
   -moz-border-radius: 5px;
@@ -182,7 +202,7 @@ hr.solid{
   border: 0px;
   background: none;
   background-color: #CF5C3F;
-  color: #fff;
+  color: none;
   float: right;
   padding: 10px;
   border-radius-top-right: 5px;
@@ -195,7 +215,7 @@ hr.solid{
 }
 
 .search-form{
-  background-color: #fff
+  background-color: none;
 
 }
 
@@ -206,7 +226,7 @@ hr.solid{
 
 @media only screen and (min-width : 150px) and (max-width : 780px)
 {
-  {}
+ 
   .search
   {
     width: 95%;
@@ -232,8 +252,8 @@ hr {
 
 .btn-colour-1 {
   color: #fff;
-  background-color: #004E64;
-  border-color: #004E64;
+  background-color: #004E64 !important;
+  border-color: #004E64 !important;
   font-weight: bold;
   letter-spacing: 0.05em;
   border-radius: 0;
@@ -262,3 +282,11 @@ hr {
     left: -10px;
 }
 
+
+.text-class{
+  font-family: 'Baloo Chettan 2', cursive; 
+}
+
+.custom-btn{
+  background: #e07979;
+}

@@ -23,10 +23,16 @@
 
 
 
-<!-- display django messages (WORKS) -->
 
-    <!--<div class="row">
-        <div class="col-md-8">
+
+<div class="row justify-content-center my-row top-row" style="margin-top: 8rem;">  
+
+    <div class="my-2">
+
+	    <!-- display django messages (WORKS) -->
+
+    <div class="row">
+        <div class="col-md-12">
             {% if messages %}
                 {% for message in messages %}
                     <div class="alert alert-{{ message.tags }}">
@@ -37,43 +43,69 @@
                 {% endfor %}
             {% endif %}       
         </div>
-    </div> -->
+    </div>
 
-    <div class="content-section">
-        <div class="media">
-            <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
-            <div class="media-body">
-                <h2 class="account-heading">{{ user.username }} </h2>
-                 
-            </div>
+	</div>
 
-        </div>
 
-        <li>
-            <form class="logout-link" action="/accounts/logout/" method="post">
-                {% csrf_token %}
-                    <button class="logout-button" type="submit">Log Out</button>
-            </form>
-        </li>
+</div>
+
+
+<div class="row justify-content-center">
+
+    <div class="col-md-4 mt-4">
+
+        <form method="POST" enctype="multipart/form-data" style="font-family: 'Baloo Chettan 2', cursive; ">
+        {% csrf_token %}
+
+        {{u_form|crispy}}
+
+        {{i_form|crispy}} 
+
+    
+    </div>
+
+
+    <div class="col-md-4 ml-5 mt-4">
+
+        {{p_form|crispy}} 
+
+            
 
     </div>
 
-    <h1> Welcome {{ user.username }} </h1>
-
-               
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        
-
-        {{u_form|crispy}} 
-        {{p_form|crispy}} 
-
-        <button type="submit" class="btn btn-success"> Update</button>
 
 
-    </form>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-md-8 d-flex justify-content-center mb-4">
+
+        <button type="submit" class="btn btn-danger custom-btn"> Update</button>
+        </form>
 
 
+
+
+    </div>
+
+
+</div>
+    
+
+</div>
+
+<style>
+
+    .custom-btn{
+        background: #cf6060;
+    }
+
+
+
+</style>
+
+</div>
 
 {% endblock content %}
 

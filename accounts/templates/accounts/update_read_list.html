@@ -3,7 +3,14 @@
 {% load static %}
 
 {% block cssfiles %}
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2&display=swap" rel="stylesheet">    
+    <style>
+        body {
+            font-family: 'Baloo Chettan'; 
+        }
+    </style>
 {% endblock cssfiles %}
 
 {% block content %}
@@ -12,15 +19,47 @@
 
 		<div class="genre-tab" style="padding-top:70px; padding-bottom:50px;">
 
+            <div class="browse-by-genre mt-5" style="font-family: 'Baloo Chettan 2', cursive;">
+
+                <h5> browse and add according to your preferred genres </h5>
+
+                <div class="mt-4">
+
+                    {% if user_genres %}
+				        {% for gen in user_genres %}
+					        <div class="card-gen">
+  						        <div class="card-body">
+    						        <!--<p class="card-text">{{ gen }}</p> -->
+    						        <a href="/accounts/genre/books/{{ gen.id }}/" class="stretched-link genres-link" style="font-family: 'Baloo Chettan 2', cursive; color: black;">{{ gen }}</a>
+  						        </div>
+					        </div>
+				        {% endfor %}
+			        {% endif %}
+
+                </div>
+
+
+
+
+
+            </div>
+
+
+            <h5 class="text-class mt-5"> Look for your favourite books </h5>
             <form class="form-inline my-5 ">
                 <input name="q" class="form-control mr-2" type="search" placeholder="Search" aria-label="Search" blank="False">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Go</button>
             </form>
 
 			{% if books %}
 
                 {% for book in books %}
-                    {{book}}
+                    <div class="card-gen">
+  						<div class="card-body text-center">
+    						        <!--<p class="card-text">{{ gen }}</p> -->
+    						<a href="/accounts/genre/books/{{ book.id }}/" class="stretched-link genres-link text-center" style="font-family: 'Baloo Chettan 2', cursive; color: black;">{{ book }}</a>
+  						</div>
+					</div>
 
                 {% endfor %}
 
@@ -53,21 +92,29 @@
 
 		.card-gen{
 			display: inline-flex;
-			border: 1px solid rgba(0,0,0,.125); 
-			margin-left: 5rem;
-    		margin-top: 3rem;
-			width: 10rem;
-			height: 5rem;
+			border: 1px solid white; 
+			margin-left: 7rem;
+            margin-right: 3rem;
+    		margin-top: none;
+			width: 30%;
+			height: fit-content;
 			
 		}
 
+        .show-genres{
+            
+        }
+
 		.card-gen:hover {
-			border: 1px solid rgba(0,0,0,.125);
-			background: red;
+			border: 1px solid #F6F0F1; 
+			background: #F6F0F1;
 		}
 
 		.card-body{
-			padding: 0.75rem;
+			padding-left: 0.75rem;
+            padding-right: 0.75rem;
+            padding-top: 0;
+            padding-bottom: 1rem;
 		}
 
 		.genres-link{
@@ -81,3 +128,4 @@
 	</style>    
 
 {% endblock content %}
+
